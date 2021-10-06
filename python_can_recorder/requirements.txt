@@ -1,0 +1,6 @@
+python-can
+pandas
+sqlalchemy
+scipy
+numpy
+requests

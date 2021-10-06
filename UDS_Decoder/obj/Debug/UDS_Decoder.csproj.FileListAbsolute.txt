@@ -1,0 +1,10 @@
+C:\Users\ga76xid\Documents\sm_uds_decoder\UDS_Decoder\obj\Debug\UDS_Decoder.Properties.Resources.resources
+C:\Users\ga76xid\Documents\sm_uds_decoder\UDS_Decoder\obj\Debug\UDS_Decoder.csproj.GenerateResource.cache
+C:\Users\ga76xid\Documents\sm_uds_decoder\UDS_Decoder\obj\Debug\UDS_Decoder.csproj.CoreCompileInputs.cache
+C:\Users\ga76xid\Documents\sm_uds_decoder\UDS_Decoder\bin\Debug\UDS_Decoder.exe.config
+C:\Users\ga76xid\Documents\sm_uds_decoder\UDS_Decoder\bin\Debug\UDS_Decoder.exe
+C:\Users\ga76xid\Documents\sm_uds_decoder\UDS_Decoder\bin\Debug\UDS_Decoder.pdb
+C:\Users\ga76xid\Documents\sm_uds_decoder\UDS_Decoder\obj\Debug\UDS_Decoder.uds_decoder.resources
+C:\Users\ga76xid\Documents\sm_uds_decoder\UDS_Decoder\obj\Debug\UDS_Decoder.exe
+C:\Users\ga76xid\Documents\sm_uds_decoder\UDS_Decoder\obj\Debug\UDS_Decoder.pdb
+C:\Users\ga76xid\Documents\sm_uds_decoder\UDS_Decoder\obj\Debug\UDS_Decoder.csproj.AssemblyReference.cache
