@@ -30,6 +30,7 @@ namespace UDS_Decoder
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uds_decoder));
             this.btn_connect = new System.Windows.Forms.Button();
             this.selector_com_port = new System.Windows.Forms.ComboBox();
             this.tb_mult = new System.Windows.Forms.TextBox();
@@ -104,17 +105,38 @@ namespace UDS_Decoder
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.tb_req_id = new System.Windows.Forms.TextBox();
+            this.gb_interpolate = new System.Windows.Forms.GroupBox();
+            this.cb_isFloat = new System.Windows.Forms.CheckBox();
+            this.gb_torque = new System.Windows.Forms.GroupBox();
             this.tb_abc_bit = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.tb_abc_int = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.tb_abc_in = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.cb_isFloat = new System.Windows.Forms.CheckBox();
             this.lab_value_big = new System.Windows.Forms.Label();
+            this.tb_byte16 = new System.Windows.Forms.TextBox();
+            this.cb_byte16 = new System.Windows.Forms.CheckBox();
+            this.tb_byte17 = new System.Windows.Forms.TextBox();
+            this.cb_byte17 = new System.Windows.Forms.CheckBox();
+            this.tb_byte18 = new System.Windows.Forms.TextBox();
+            this.cb_byte18 = new System.Windows.Forms.CheckBox();
+            this.tb_byte19 = new System.Windows.Forms.TextBox();
+            this.cb_byte19 = new System.Windows.Forms.CheckBox();
+            this.tb_byte20 = new System.Windows.Forms.TextBox();
+            this.cb_byte20 = new System.Windows.Forms.CheckBox();
+            this.tb_byte21 = new System.Windows.Forms.TextBox();
+            this.cb_byte21 = new System.Windows.Forms.CheckBox();
+            this.tb_byte22 = new System.Windows.Forms.TextBox();
+            this.cb_byte22 = new System.Windows.Forms.CheckBox();
+            this.tb_byte23 = new System.Windows.Forms.TextBox();
+            this.cb_byte23 = new System.Windows.Forms.CheckBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.gb_interpolate.SuspendLayout();
+            this.gb_torque.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_connect
@@ -146,7 +168,7 @@ namespace UDS_Decoder
             // cb_byte0
             // 
             this.cb_byte0.AutoSize = true;
-            this.cb_byte0.Location = new System.Drawing.Point(170, 51);
+            this.cb_byte0.Location = new System.Drawing.Point(216, 51);
             this.cb_byte0.Name = "cb_byte0";
             this.cb_byte0.Size = new System.Drawing.Size(35, 17);
             this.cb_byte0.TabIndex = 3;
@@ -156,14 +178,14 @@ namespace UDS_Decoder
             // 
             // tb_byte0
             // 
-            this.tb_byte0.Location = new System.Drawing.Point(170, 25);
+            this.tb_byte0.Location = new System.Drawing.Point(216, 25);
             this.tb_byte0.Name = "tb_byte0";
             this.tb_byte0.Size = new System.Drawing.Size(36, 20);
             this.tb_byte0.TabIndex = 4;
             // 
             // tb_byte1
             // 
-            this.tb_byte1.Location = new System.Drawing.Point(211, 25);
+            this.tb_byte1.Location = new System.Drawing.Point(257, 25);
             this.tb_byte1.Name = "tb_byte1";
             this.tb_byte1.Size = new System.Drawing.Size(36, 20);
             this.tb_byte1.TabIndex = 6;
@@ -171,7 +193,7 @@ namespace UDS_Decoder
             // cb_byte1
             // 
             this.cb_byte1.AutoSize = true;
-            this.cb_byte1.Location = new System.Drawing.Point(211, 51);
+            this.cb_byte1.Location = new System.Drawing.Point(257, 51);
             this.cb_byte1.Name = "cb_byte1";
             this.cb_byte1.Size = new System.Drawing.Size(32, 17);
             this.cb_byte1.TabIndex = 5;
@@ -181,7 +203,7 @@ namespace UDS_Decoder
             // 
             // tb_byte2
             // 
-            this.tb_byte2.Location = new System.Drawing.Point(252, 25);
+            this.tb_byte2.Location = new System.Drawing.Point(298, 25);
             this.tb_byte2.Name = "tb_byte2";
             this.tb_byte2.Size = new System.Drawing.Size(36, 20);
             this.tb_byte2.TabIndex = 8;
@@ -189,7 +211,7 @@ namespace UDS_Decoder
             // cb_byte2
             // 
             this.cb_byte2.AutoSize = true;
-            this.cb_byte2.Location = new System.Drawing.Point(252, 51);
+            this.cb_byte2.Location = new System.Drawing.Point(298, 51);
             this.cb_byte2.Name = "cb_byte2";
             this.cb_byte2.Size = new System.Drawing.Size(35, 17);
             this.cb_byte2.TabIndex = 7;
@@ -199,7 +221,7 @@ namespace UDS_Decoder
             // 
             // tb_byte3
             // 
-            this.tb_byte3.Location = new System.Drawing.Point(293, 25);
+            this.tb_byte3.Location = new System.Drawing.Point(339, 25);
             this.tb_byte3.Name = "tb_byte3";
             this.tb_byte3.Size = new System.Drawing.Size(36, 20);
             this.tb_byte3.TabIndex = 10;
@@ -207,7 +229,7 @@ namespace UDS_Decoder
             // cb_byte3
             // 
             this.cb_byte3.AutoSize = true;
-            this.cb_byte3.Location = new System.Drawing.Point(293, 51);
+            this.cb_byte3.Location = new System.Drawing.Point(339, 51);
             this.cb_byte3.Name = "cb_byte3";
             this.cb_byte3.Size = new System.Drawing.Size(35, 17);
             this.cb_byte3.TabIndex = 9;
@@ -217,7 +239,7 @@ namespace UDS_Decoder
             // 
             // tb_byte4
             // 
-            this.tb_byte4.Location = new System.Drawing.Point(334, 25);
+            this.tb_byte4.Location = new System.Drawing.Point(380, 25);
             this.tb_byte4.Name = "tb_byte4";
             this.tb_byte4.Size = new System.Drawing.Size(36, 20);
             this.tb_byte4.TabIndex = 12;
@@ -225,7 +247,7 @@ namespace UDS_Decoder
             // cb_byte4
             // 
             this.cb_byte4.AutoSize = true;
-            this.cb_byte4.Location = new System.Drawing.Point(334, 51);
+            this.cb_byte4.Location = new System.Drawing.Point(380, 51);
             this.cb_byte4.Name = "cb_byte4";
             this.cb_byte4.Size = new System.Drawing.Size(35, 17);
             this.cb_byte4.TabIndex = 11;
@@ -285,9 +307,9 @@ namespace UDS_Decoder
             // 
             // tb_id
             // 
-            this.tb_id.Location = new System.Drawing.Point(9, 25);
+            this.tb_id.Location = new System.Drawing.Point(84, 25);
             this.tb_id.Name = "tb_id";
-            this.tb_id.Size = new System.Drawing.Size(77, 20);
+            this.tb_id.Size = new System.Drawing.Size(60, 20);
             this.tb_id.TabIndex = 19;
             // 
             // btn_com_port_refresh
@@ -312,14 +334,14 @@ namespace UDS_Decoder
             // 
             // tb_br0
             // 
-            this.tb_br0.Location = new System.Drawing.Point(92, 25);
+            this.tb_br0.Location = new System.Drawing.Point(146, 25);
             this.tb_br0.Name = "tb_br0";
             this.tb_br0.Size = new System.Drawing.Size(27, 20);
             this.tb_br0.TabIndex = 22;
             // 
             // tb_br1
             // 
-            this.tb_br1.Location = new System.Drawing.Point(125, 25);
+            this.tb_br1.Location = new System.Drawing.Point(175, 25);
             this.tb_br1.Name = "tb_br1";
             this.tb_br1.Size = new System.Drawing.Size(27, 20);
             this.tb_br1.TabIndex = 23;
@@ -335,7 +357,7 @@ namespace UDS_Decoder
             // 
             // tb_byte5
             // 
-            this.tb_byte5.Location = new System.Drawing.Point(376, 25);
+            this.tb_byte5.Location = new System.Drawing.Point(422, 25);
             this.tb_byte5.Name = "tb_byte5";
             this.tb_byte5.Size = new System.Drawing.Size(36, 20);
             this.tb_byte5.TabIndex = 26;
@@ -343,7 +365,7 @@ namespace UDS_Decoder
             // cb_byte5
             // 
             this.cb_byte5.AutoSize = true;
-            this.cb_byte5.Location = new System.Drawing.Point(376, 51);
+            this.cb_byte5.Location = new System.Drawing.Point(422, 51);
             this.cb_byte5.Name = "cb_byte5";
             this.cb_byte5.Size = new System.Drawing.Size(35, 17);
             this.cb_byte5.TabIndex = 25;
@@ -353,7 +375,7 @@ namespace UDS_Decoder
             // 
             // tb_byte6
             // 
-            this.tb_byte6.Location = new System.Drawing.Point(418, 25);
+            this.tb_byte6.Location = new System.Drawing.Point(464, 25);
             this.tb_byte6.Name = "tb_byte6";
             this.tb_byte6.Size = new System.Drawing.Size(36, 20);
             this.tb_byte6.TabIndex = 28;
@@ -361,7 +383,7 @@ namespace UDS_Decoder
             // cb_byte6
             // 
             this.cb_byte6.AutoSize = true;
-            this.cb_byte6.Location = new System.Drawing.Point(418, 51);
+            this.cb_byte6.Location = new System.Drawing.Point(464, 51);
             this.cb_byte6.Name = "cb_byte6";
             this.cb_byte6.Size = new System.Drawing.Size(35, 17);
             this.cb_byte6.TabIndex = 27;
@@ -371,7 +393,7 @@ namespace UDS_Decoder
             // 
             // tb_byte7
             // 
-            this.tb_byte7.Location = new System.Drawing.Point(460, 25);
+            this.tb_byte7.Location = new System.Drawing.Point(506, 25);
             this.tb_byte7.Name = "tb_byte7";
             this.tb_byte7.Size = new System.Drawing.Size(36, 20);
             this.tb_byte7.TabIndex = 30;
@@ -379,7 +401,7 @@ namespace UDS_Decoder
             // cb_byte7
             // 
             this.cb_byte7.AutoSize = true;
-            this.cb_byte7.Location = new System.Drawing.Point(460, 51);
+            this.cb_byte7.Location = new System.Drawing.Point(506, 51);
             this.cb_byte7.Name = "cb_byte7";
             this.cb_byte7.Size = new System.Drawing.Size(35, 17);
             this.cb_byte7.TabIndex = 29;
@@ -389,7 +411,7 @@ namespace UDS_Decoder
             // 
             // tb_byte8
             // 
-            this.tb_byte8.Location = new System.Drawing.Point(502, 25);
+            this.tb_byte8.Location = new System.Drawing.Point(548, 25);
             this.tb_byte8.Name = "tb_byte8";
             this.tb_byte8.Size = new System.Drawing.Size(36, 20);
             this.tb_byte8.TabIndex = 32;
@@ -397,7 +419,7 @@ namespace UDS_Decoder
             // cb_byte8
             // 
             this.cb_byte8.AutoSize = true;
-            this.cb_byte8.Location = new System.Drawing.Point(502, 51);
+            this.cb_byte8.Location = new System.Drawing.Point(548, 51);
             this.cb_byte8.Name = "cb_byte8";
             this.cb_byte8.Size = new System.Drawing.Size(35, 17);
             this.cb_byte8.TabIndex = 31;
@@ -407,7 +429,7 @@ namespace UDS_Decoder
             // 
             // tb_byte9
             // 
-            this.tb_byte9.Location = new System.Drawing.Point(544, 25);
+            this.tb_byte9.Location = new System.Drawing.Point(590, 25);
             this.tb_byte9.Name = "tb_byte9";
             this.tb_byte9.Size = new System.Drawing.Size(36, 20);
             this.tb_byte9.TabIndex = 34;
@@ -415,7 +437,7 @@ namespace UDS_Decoder
             // cb_byte9
             // 
             this.cb_byte9.AutoSize = true;
-            this.cb_byte9.Location = new System.Drawing.Point(544, 51);
+            this.cb_byte9.Location = new System.Drawing.Point(590, 51);
             this.cb_byte9.Name = "cb_byte9";
             this.cb_byte9.Size = new System.Drawing.Size(32, 17);
             this.cb_byte9.TabIndex = 33;
@@ -425,7 +447,7 @@ namespace UDS_Decoder
             // 
             // tb_byte10
             // 
-            this.tb_byte10.Location = new System.Drawing.Point(586, 25);
+            this.tb_byte10.Location = new System.Drawing.Point(632, 25);
             this.tb_byte10.Name = "tb_byte10";
             this.tb_byte10.Size = new System.Drawing.Size(36, 20);
             this.tb_byte10.TabIndex = 36;
@@ -433,7 +455,7 @@ namespace UDS_Decoder
             // cb_byte10
             // 
             this.cb_byte10.AutoSize = true;
-            this.cb_byte10.Location = new System.Drawing.Point(586, 51);
+            this.cb_byte10.Location = new System.Drawing.Point(632, 51);
             this.cb_byte10.Name = "cb_byte10";
             this.cb_byte10.Size = new System.Drawing.Size(38, 17);
             this.cb_byte10.TabIndex = 35;
@@ -443,7 +465,7 @@ namespace UDS_Decoder
             // 
             // tb_byte11
             // 
-            this.tb_byte11.Location = new System.Drawing.Point(628, 25);
+            this.tb_byte11.Location = new System.Drawing.Point(674, 25);
             this.tb_byte11.Name = "tb_byte11";
             this.tb_byte11.Size = new System.Drawing.Size(36, 20);
             this.tb_byte11.TabIndex = 38;
@@ -451,7 +473,7 @@ namespace UDS_Decoder
             // cb_byte11
             // 
             this.cb_byte11.AutoSize = true;
-            this.cb_byte11.Location = new System.Drawing.Point(628, 51);
+            this.cb_byte11.Location = new System.Drawing.Point(674, 51);
             this.cb_byte11.Name = "cb_byte11";
             this.cb_byte11.Size = new System.Drawing.Size(38, 17);
             this.cb_byte11.TabIndex = 37;
@@ -461,7 +483,7 @@ namespace UDS_Decoder
             // 
             // tb_byte14
             // 
-            this.tb_byte14.Location = new System.Drawing.Point(755, 25);
+            this.tb_byte14.Location = new System.Drawing.Point(801, 25);
             this.tb_byte14.Name = "tb_byte14";
             this.tb_byte14.Size = new System.Drawing.Size(36, 20);
             this.tb_byte14.TabIndex = 44;
@@ -469,7 +491,7 @@ namespace UDS_Decoder
             // cb_byte14
             // 
             this.cb_byte14.AutoSize = true;
-            this.cb_byte14.Location = new System.Drawing.Point(755, 51);
+            this.cb_byte14.Location = new System.Drawing.Point(801, 51);
             this.cb_byte14.Name = "cb_byte14";
             this.cb_byte14.Size = new System.Drawing.Size(38, 17);
             this.cb_byte14.TabIndex = 43;
@@ -479,7 +501,7 @@ namespace UDS_Decoder
             // 
             // tb_byte13
             // 
-            this.tb_byte13.Location = new System.Drawing.Point(713, 25);
+            this.tb_byte13.Location = new System.Drawing.Point(759, 25);
             this.tb_byte13.Name = "tb_byte13";
             this.tb_byte13.Size = new System.Drawing.Size(36, 20);
             this.tb_byte13.TabIndex = 42;
@@ -487,7 +509,7 @@ namespace UDS_Decoder
             // cb_byte13
             // 
             this.cb_byte13.AutoSize = true;
-            this.cb_byte13.Location = new System.Drawing.Point(713, 51);
+            this.cb_byte13.Location = new System.Drawing.Point(759, 51);
             this.cb_byte13.Name = "cb_byte13";
             this.cb_byte13.Size = new System.Drawing.Size(38, 17);
             this.cb_byte13.TabIndex = 41;
@@ -497,7 +519,7 @@ namespace UDS_Decoder
             // 
             // tb_byte12
             // 
-            this.tb_byte12.Location = new System.Drawing.Point(671, 25);
+            this.tb_byte12.Location = new System.Drawing.Point(717, 25);
             this.tb_byte12.Name = "tb_byte12";
             this.tb_byte12.Size = new System.Drawing.Size(36, 20);
             this.tb_byte12.TabIndex = 40;
@@ -505,7 +527,7 @@ namespace UDS_Decoder
             // cb_byte12
             // 
             this.cb_byte12.AutoSize = true;
-            this.cb_byte12.Location = new System.Drawing.Point(671, 51);
+            this.cb_byte12.Location = new System.Drawing.Point(717, 51);
             this.cb_byte12.Name = "cb_byte12";
             this.cb_byte12.Size = new System.Drawing.Size(38, 17);
             this.cb_byte12.TabIndex = 39;
@@ -549,7 +571,7 @@ namespace UDS_Decoder
             // 
             // tb_byte15
             // 
-            this.tb_byte15.Location = new System.Drawing.Point(798, 25);
+            this.tb_byte15.Location = new System.Drawing.Point(844, 25);
             this.tb_byte15.Name = "tb_byte15";
             this.tb_byte15.Size = new System.Drawing.Size(36, 20);
             this.tb_byte15.TabIndex = 50;
@@ -557,7 +579,7 @@ namespace UDS_Decoder
             // cb_byte15
             // 
             this.cb_byte15.AutoSize = true;
-            this.cb_byte15.Location = new System.Drawing.Point(798, 51);
+            this.cb_byte15.Location = new System.Drawing.Point(844, 51);
             this.cb_byte15.Name = "cb_byte15";
             this.cb_byte15.Size = new System.Drawing.Size(38, 17);
             this.cb_byte15.TabIndex = 49;
@@ -576,7 +598,7 @@ namespace UDS_Decoder
             // lab_startbit
             // 
             this.lab_startbit.AutoSize = true;
-            this.lab_startbit.Location = new System.Drawing.Point(577, 98);
+            this.lab_startbit.Location = new System.Drawing.Point(861, 12);
             this.lab_startbit.Name = "lab_startbit";
             this.lab_startbit.Size = new System.Drawing.Size(43, 13);
             this.lab_startbit.TabIndex = 52;
@@ -585,7 +607,7 @@ namespace UDS_Decoder
             // lab_length
             // 
             this.lab_length.AutoSize = true;
-            this.lab_length.Location = new System.Drawing.Point(577, 119);
+            this.lab_length.Location = new System.Drawing.Point(861, 33);
             this.lab_length.Name = "lab_length";
             this.lab_length.Size = new System.Drawing.Size(43, 13);
             this.lab_length.TabIndex = 53;
@@ -594,7 +616,7 @@ namespace UDS_Decoder
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(370, 92);
+            this.label6.Location = new System.Drawing.Point(33, 21);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(22, 13);
             this.label6.TabIndex = 55;
@@ -602,7 +624,7 @@ namespace UDS_Decoder
             // 
             // tb_ax
             // 
-            this.tb_ax.Location = new System.Drawing.Point(398, 88);
+            this.tb_ax.Location = new System.Drawing.Point(61, 17);
             this.tb_ax.Name = "tb_ax";
             this.tb_ax.Size = new System.Drawing.Size(77, 20);
             this.tb_ax.TabIndex = 54;
@@ -610,7 +632,7 @@ namespace UDS_Decoder
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(370, 118);
+            this.label7.Location = new System.Drawing.Point(33, 47);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(22, 13);
             this.label7.TabIndex = 57;
@@ -618,7 +640,7 @@ namespace UDS_Decoder
             // 
             // tb_ay
             // 
-            this.tb_ay.Location = new System.Drawing.Point(398, 114);
+            this.tb_ay.Location = new System.Drawing.Point(61, 43);
             this.tb_ay.Name = "tb_ay";
             this.tb_ay.Size = new System.Drawing.Size(77, 20);
             this.tb_ay.TabIndex = 56;
@@ -626,7 +648,7 @@ namespace UDS_Decoder
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(370, 144);
+            this.label8.Location = new System.Drawing.Point(33, 73);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(22, 13);
             this.label8.TabIndex = 59;
@@ -634,7 +656,7 @@ namespace UDS_Decoder
             // 
             // tb_bx
             // 
-            this.tb_bx.Location = new System.Drawing.Point(398, 140);
+            this.tb_bx.Location = new System.Drawing.Point(61, 69);
             this.tb_bx.Name = "tb_bx";
             this.tb_bx.Size = new System.Drawing.Size(77, 20);
             this.tb_bx.TabIndex = 58;
@@ -642,7 +664,7 @@ namespace UDS_Decoder
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(370, 170);
+            this.label9.Location = new System.Drawing.Point(33, 99);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(22, 13);
             this.label9.TabIndex = 61;
@@ -650,14 +672,14 @@ namespace UDS_Decoder
             // 
             // tb_by
             // 
-            this.tb_by.Location = new System.Drawing.Point(398, 166);
+            this.tb_by.Location = new System.Drawing.Point(61, 95);
             this.tb_by.Name = "tb_by";
             this.tb_by.Size = new System.Drawing.Size(77, 20);
             this.tb_by.TabIndex = 60;
             // 
             // btn_set_ax
             // 
-            this.btn_set_ax.Location = new System.Drawing.Point(481, 86);
+            this.btn_set_ax.Location = new System.Drawing.Point(144, 15);
             this.btn_set_ax.Name = "btn_set_ax";
             this.btn_set_ax.Size = new System.Drawing.Size(33, 23);
             this.btn_set_ax.TabIndex = 62;
@@ -667,7 +689,7 @@ namespace UDS_Decoder
             // 
             // btn_set_ay
             // 
-            this.btn_set_ay.Location = new System.Drawing.Point(481, 114);
+            this.btn_set_ay.Location = new System.Drawing.Point(144, 43);
             this.btn_set_ay.Name = "btn_set_ay";
             this.btn_set_ay.Size = new System.Drawing.Size(33, 23);
             this.btn_set_ay.TabIndex = 63;
@@ -677,7 +699,7 @@ namespace UDS_Decoder
             // 
             // btn_set_bx
             // 
-            this.btn_set_bx.Location = new System.Drawing.Point(481, 138);
+            this.btn_set_bx.Location = new System.Drawing.Point(144, 67);
             this.btn_set_bx.Name = "btn_set_bx";
             this.btn_set_bx.Size = new System.Drawing.Size(33, 23);
             this.btn_set_bx.TabIndex = 64;
@@ -687,7 +709,7 @@ namespace UDS_Decoder
             // 
             // btn_set_by
             // 
-            this.btn_set_by.Location = new System.Drawing.Point(481, 164);
+            this.btn_set_by.Location = new System.Drawing.Point(144, 93);
             this.btn_set_by.Name = "btn_set_by";
             this.btn_set_by.Size = new System.Drawing.Size(33, 23);
             this.btn_set_by.TabIndex = 65;
@@ -698,7 +720,7 @@ namespace UDS_Decoder
             // tb_ssr_t
             // 
             this.tb_ssr_t.Enabled = false;
-            this.tb_ssr_t.Location = new System.Drawing.Point(484, 194);
+            this.tb_ssr_t.Location = new System.Drawing.Point(147, 119);
             this.tb_ssr_t.Name = "tb_ssr_t";
             this.tb_ssr_t.Size = new System.Drawing.Size(77, 20);
             this.tb_ssr_t.TabIndex = 68;
@@ -706,7 +728,7 @@ namespace UDS_Decoder
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(355, 197);
+            this.label10.Location = new System.Drawing.Point(18, 122);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(37, 13);
             this.label10.TabIndex = 67;
@@ -715,7 +737,7 @@ namespace UDS_Decoder
             // tb_ssr_m
             // 
             this.tb_ssr_m.Enabled = false;
-            this.tb_ssr_m.Location = new System.Drawing.Point(398, 194);
+            this.tb_ssr_m.Location = new System.Drawing.Point(61, 119);
             this.tb_ssr_m.Name = "tb_ssr_m";
             this.tb_ssr_m.Size = new System.Drawing.Size(77, 20);
             this.tb_ssr_m.TabIndex = 66;
@@ -729,7 +751,7 @@ namespace UDS_Decoder
             // 
             // tb_bitmask
             // 
-            this.tb_bitmask.Location = new System.Drawing.Point(52, 51);
+            this.tb_bitmask.Location = new System.Drawing.Point(98, 51);
             this.tb_bitmask.Name = "tb_bitmask";
             this.tb_bitmask.Size = new System.Drawing.Size(108, 20);
             this.tb_bitmask.TabIndex = 70;
@@ -744,7 +766,7 @@ namespace UDS_Decoder
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(7, 54);
+            this.label11.Location = new System.Drawing.Point(53, 54);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(44, 13);
             this.label11.TabIndex = 71;
@@ -752,26 +774,29 @@ namespace UDS_Decoder
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.tb_byte23);
+            this.groupBox1.Controls.Add(this.cb_byte23);
+            this.groupBox1.Controls.Add(this.tb_byte22);
+            this.groupBox1.Controls.Add(this.cb_byte22);
+            this.groupBox1.Controls.Add(this.tb_byte21);
+            this.groupBox1.Controls.Add(this.cb_byte21);
+            this.groupBox1.Controls.Add(this.tb_byte20);
+            this.groupBox1.Controls.Add(this.cb_byte20);
+            this.groupBox1.Controls.Add(this.tb_byte19);
+            this.groupBox1.Controls.Add(this.cb_byte19);
+            this.groupBox1.Controls.Add(this.tb_byte18);
+            this.groupBox1.Controls.Add(this.cb_byte18);
+            this.groupBox1.Controls.Add(this.tb_byte17);
+            this.groupBox1.Controls.Add(this.cb_byte17);
+            this.groupBox1.Controls.Add(this.tb_byte16);
+            this.groupBox1.Controls.Add(this.cb_byte16);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.tb_req_id);
+            this.groupBox1.Controls.Add(this.gb_interpolate);
             this.groupBox1.Controls.Add(this.cb_isFloat);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.tb_bitmask);
-            this.groupBox1.Controls.Add(this.tb_ssr_t);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.tb_ssr_m);
-            this.groupBox1.Controls.Add(this.btn_set_by);
-            this.groupBox1.Controls.Add(this.btn_set_bx);
-            this.groupBox1.Controls.Add(this.btn_set_ay);
-            this.groupBox1.Controls.Add(this.btn_set_ax);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.tb_by);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.tb_bx);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.tb_ay);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.tb_ax);
-            this.groupBox1.Controls.Add(this.lab_length);
-            this.groupBox1.Controls.Add(this.lab_startbit);
             this.groupBox1.Controls.Add(this.tb_factor2);
             this.groupBox1.Controls.Add(this.tb_byte15);
             this.groupBox1.Controls.Add(this.cb_byte15);
@@ -822,25 +847,75 @@ namespace UDS_Decoder
             this.groupBox1.Controls.Add(this.tb_mult);
             this.groupBox1.Location = new System.Drawing.Point(12, 53);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(855, 226);
+            this.groupBox1.Size = new System.Drawing.Size(1227, 226);
             this.groupBox1.TabIndex = 72;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "VCDS Decoder";
             // 
-            // groupBox2
+            // label14
             // 
-            this.groupBox2.Controls.Add(this.tb_abc_bit);
-            this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Controls.Add(this.tb_abc_int);
-            this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.tb_abc_in);
-            this.groupBox2.Controls.Add(this.textBox1);
-            this.groupBox2.Location = new System.Drawing.Point(12, 285);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(854, 77);
-            this.groupBox2.TabIndex = 73;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Torque PID Decoder";
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(66, 28);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(18, 13);
+            this.label14.TabIndex = 75;
+            this.label14.Text = "➞";
+            // 
+            // tb_req_id
+            // 
+            this.tb_req_id.Location = new System.Drawing.Point(6, 24);
+            this.tb_req_id.Name = "tb_req_id";
+            this.tb_req_id.Size = new System.Drawing.Size(60, 20);
+            this.tb_req_id.TabIndex = 74;
+            // 
+            // gb_interpolate
+            // 
+            this.gb_interpolate.Controls.Add(this.tb_ssr_t);
+            this.gb_interpolate.Controls.Add(this.label10);
+            this.gb_interpolate.Controls.Add(this.tb_ssr_m);
+            this.gb_interpolate.Controls.Add(this.btn_set_by);
+            this.gb_interpolate.Controls.Add(this.btn_set_bx);
+            this.gb_interpolate.Controls.Add(this.btn_set_ay);
+            this.gb_interpolate.Controls.Add(this.btn_set_ax);
+            this.gb_interpolate.Controls.Add(this.label9);
+            this.gb_interpolate.Controls.Add(this.tb_by);
+            this.gb_interpolate.Controls.Add(this.label8);
+            this.gb_interpolate.Controls.Add(this.tb_bx);
+            this.gb_interpolate.Controls.Add(this.label7);
+            this.gb_interpolate.Controls.Add(this.tb_ay);
+            this.gb_interpolate.Controls.Add(this.label6);
+            this.gb_interpolate.Controls.Add(this.tb_ax);
+            this.gb_interpolate.Location = new System.Drawing.Point(422, 80);
+            this.gb_interpolate.Name = "gb_interpolate";
+            this.gb_interpolate.Size = new System.Drawing.Size(238, 146);
+            this.gb_interpolate.TabIndex = 73;
+            this.gb_interpolate.TabStop = false;
+            this.gb_interpolate.Text = "lin. interpolator";
+            // 
+            // cb_isFloat
+            // 
+            this.cb_isFloat.AutoSize = true;
+            this.cb_isFloat.Location = new System.Drawing.Point(189, 89);
+            this.cb_isFloat.Name = "cb_isFloat";
+            this.cb_isFloat.Size = new System.Drawing.Size(49, 17);
+            this.cb_isFloat.TabIndex = 72;
+            this.cb_isFloat.Text = "Float";
+            this.cb_isFloat.UseVisualStyleBackColor = true;
+            // 
+            // gb_torque
+            // 
+            this.gb_torque.Controls.Add(this.tb_abc_bit);
+            this.gb_torque.Controls.Add(this.label13);
+            this.gb_torque.Controls.Add(this.tb_abc_int);
+            this.gb_torque.Controls.Add(this.label12);
+            this.gb_torque.Controls.Add(this.tb_abc_in);
+            this.gb_torque.Controls.Add(this.textBox1);
+            this.gb_torque.Location = new System.Drawing.Point(12, 285);
+            this.gb_torque.Name = "gb_torque";
+            this.gb_torque.Size = new System.Drawing.Size(975, 77);
+            this.gb_torque.TabIndex = 73;
+            this.gb_torque.TabStop = false;
+            this.gb_torque.Text = "Torque PID Decoder";
             // 
             // tb_abc_bit
             // 
@@ -889,16 +964,6 @@ namespace UDS_Decoder
             this.textBox1.Size = new System.Drawing.Size(716, 20);
             this.textBox1.TabIndex = 20;
             // 
-            // cb_isFloat
-            // 
-            this.cb_isFloat.AutoSize = true;
-            this.cb_isFloat.Location = new System.Drawing.Point(189, 89);
-            this.cb_isFloat.Name = "cb_isFloat";
-            this.cb_isFloat.Size = new System.Drawing.Size(49, 17);
-            this.cb_isFloat.TabIndex = 72;
-            this.cb_isFloat.Text = "Float";
-            this.cb_isFloat.UseVisualStyleBackColor = true;
-            // 
             // lab_value_big
             // 
             this.lab_value_big.AutoSize = true;
@@ -909,25 +974,183 @@ namespace UDS_Decoder
             this.lab_value_big.TabIndex = 73;
             this.lab_value_big.Text = "0.0";
             // 
+            // tb_byte16
+            // 
+            this.tb_byte16.Location = new System.Drawing.Point(886, 25);
+            this.tb_byte16.Name = "tb_byte16";
+            this.tb_byte16.Size = new System.Drawing.Size(36, 20);
+            this.tb_byte16.TabIndex = 77;
+            // 
+            // cb_byte16
+            // 
+            this.cb_byte16.AutoSize = true;
+            this.cb_byte16.Location = new System.Drawing.Point(886, 51);
+            this.cb_byte16.Name = "cb_byte16";
+            this.cb_byte16.Size = new System.Drawing.Size(38, 17);
+            this.cb_byte16.TabIndex = 76;
+            this.cb_byte16.Text = "16";
+            this.cb_byte16.UseVisualStyleBackColor = true;
+            this.cb_byte16.CheckedChanged += new System.EventHandler(this.cb_byte16_CheckedChanged);
+            // 
+            // tb_byte17
+            // 
+            this.tb_byte17.Location = new System.Drawing.Point(928, 25);
+            this.tb_byte17.Name = "tb_byte17";
+            this.tb_byte17.Size = new System.Drawing.Size(36, 20);
+            this.tb_byte17.TabIndex = 79;
+            // 
+            // cb_byte17
+            // 
+            this.cb_byte17.AutoSize = true;
+            this.cb_byte17.Location = new System.Drawing.Point(928, 51);
+            this.cb_byte17.Name = "cb_byte17";
+            this.cb_byte17.Size = new System.Drawing.Size(38, 17);
+            this.cb_byte17.TabIndex = 78;
+            this.cb_byte17.Text = "17";
+            this.cb_byte17.UseVisualStyleBackColor = true;
+            this.cb_byte17.CheckedChanged += new System.EventHandler(this.cb_byte17_CheckedChanged);
+            // 
+            // tb_byte18
+            // 
+            this.tb_byte18.Location = new System.Drawing.Point(970, 25);
+            this.tb_byte18.Name = "tb_byte18";
+            this.tb_byte18.Size = new System.Drawing.Size(36, 20);
+            this.tb_byte18.TabIndex = 81;
+            // 
+            // cb_byte18
+            // 
+            this.cb_byte18.AutoSize = true;
+            this.cb_byte18.Location = new System.Drawing.Point(970, 51);
+            this.cb_byte18.Name = "cb_byte18";
+            this.cb_byte18.Size = new System.Drawing.Size(38, 17);
+            this.cb_byte18.TabIndex = 80;
+            this.cb_byte18.Text = "18";
+            this.cb_byte18.UseVisualStyleBackColor = true;
+            this.cb_byte18.CheckedChanged += new System.EventHandler(this.cb_byte18_CheckedChanged);
+            // 
+            // tb_byte19
+            // 
+            this.tb_byte19.Location = new System.Drawing.Point(1012, 25);
+            this.tb_byte19.Name = "tb_byte19";
+            this.tb_byte19.Size = new System.Drawing.Size(36, 20);
+            this.tb_byte19.TabIndex = 83;
+            // 
+            // cb_byte19
+            // 
+            this.cb_byte19.AutoSize = true;
+            this.cb_byte19.Location = new System.Drawing.Point(1012, 51);
+            this.cb_byte19.Name = "cb_byte19";
+            this.cb_byte19.Size = new System.Drawing.Size(38, 17);
+            this.cb_byte19.TabIndex = 82;
+            this.cb_byte19.Text = "19";
+            this.cb_byte19.UseVisualStyleBackColor = true;
+            this.cb_byte19.CheckedChanged += new System.EventHandler(this.cb_byte19_CheckedChanged);
+            // 
+            // tb_byte20
+            // 
+            this.tb_byte20.Location = new System.Drawing.Point(1054, 25);
+            this.tb_byte20.Name = "tb_byte20";
+            this.tb_byte20.Size = new System.Drawing.Size(36, 20);
+            this.tb_byte20.TabIndex = 85;
+            // 
+            // cb_byte20
+            // 
+            this.cb_byte20.AutoSize = true;
+            this.cb_byte20.Location = new System.Drawing.Point(1054, 51);
+            this.cb_byte20.Name = "cb_byte20";
+            this.cb_byte20.Size = new System.Drawing.Size(38, 17);
+            this.cb_byte20.TabIndex = 84;
+            this.cb_byte20.Text = "20";
+            this.cb_byte20.UseVisualStyleBackColor = true;
+            this.cb_byte20.CheckedChanged += new System.EventHandler(this.cb_byte20_CheckedChanged);
+            // 
+            // tb_byte21
+            // 
+            this.tb_byte21.Location = new System.Drawing.Point(1096, 25);
+            this.tb_byte21.Name = "tb_byte21";
+            this.tb_byte21.Size = new System.Drawing.Size(36, 20);
+            this.tb_byte21.TabIndex = 87;
+            // 
+            // cb_byte21
+            // 
+            this.cb_byte21.AutoSize = true;
+            this.cb_byte21.Location = new System.Drawing.Point(1096, 51);
+            this.cb_byte21.Name = "cb_byte21";
+            this.cb_byte21.Size = new System.Drawing.Size(38, 17);
+            this.cb_byte21.TabIndex = 86;
+            this.cb_byte21.Text = "21";
+            this.cb_byte21.UseVisualStyleBackColor = true;
+            this.cb_byte21.CheckedChanged += new System.EventHandler(this.cb_byte21_CheckedChanged);
+            // 
+            // tb_byte22
+            // 
+            this.tb_byte22.Location = new System.Drawing.Point(1138, 25);
+            this.tb_byte22.Name = "tb_byte22";
+            this.tb_byte22.Size = new System.Drawing.Size(36, 20);
+            this.tb_byte22.TabIndex = 89;
+            // 
+            // cb_byte22
+            // 
+            this.cb_byte22.AutoSize = true;
+            this.cb_byte22.Location = new System.Drawing.Point(1138, 51);
+            this.cb_byte22.Name = "cb_byte22";
+            this.cb_byte22.Size = new System.Drawing.Size(38, 17);
+            this.cb_byte22.TabIndex = 88;
+            this.cb_byte22.Text = "22";
+            this.cb_byte22.UseVisualStyleBackColor = true;
+            this.cb_byte22.CheckedChanged += new System.EventHandler(this.cb_byte22_CheckedChanged);
+            // 
+            // tb_byte23
+            // 
+            this.tb_byte23.Location = new System.Drawing.Point(1180, 25);
+            this.tb_byte23.Name = "tb_byte23";
+            this.tb_byte23.Size = new System.Drawing.Size(36, 20);
+            this.tb_byte23.TabIndex = 91;
+            // 
+            // cb_byte23
+            // 
+            this.cb_byte23.AutoSize = true;
+            this.cb_byte23.Location = new System.Drawing.Point(1180, 51);
+            this.cb_byte23.Name = "cb_byte23";
+            this.cb_byte23.Size = new System.Drawing.Size(38, 17);
+            this.cb_byte23.TabIndex = 90;
+            this.cb_byte23.Text = "23";
+            this.cb_byte23.UseVisualStyleBackColor = true;
+            this.cb_byte23.CheckedChanged += new System.EventHandler(this.cb_byte23_CheckedChanged);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(205, 28);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(9, 13);
+            this.label15.TabIndex = 92;
+            this.label15.Text = "|";
+            // 
             // uds_decoder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(875, 368);
+            this.ClientSize = new System.Drawing.Size(1254, 286);
             this.Controls.Add(this.lab_value_big);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.gb_torque);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tb_settingsstring);
+            this.Controls.Add(this.lab_length);
             this.Controls.Add(this.lab_msg_counter);
+            this.Controls.Add(this.lab_startbit);
             this.Controls.Add(this.btn_com_port_refresh);
             this.Controls.Add(this.selector_com_port);
             this.Controls.Add(this.btn_connect);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "uds_decoder";
             this.Text = "UDS Decoder";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.gb_interpolate.ResumeLayout(false);
+            this.gb_interpolate.PerformLayout();
+            this.gb_torque.ResumeLayout(false);
+            this.gb_torque.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1009,7 +1232,7 @@ namespace UDS_Decoder
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox gb_torque;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox tb_abc_int;
         private System.Windows.Forms.Label label12;
@@ -1018,6 +1241,26 @@ namespace UDS_Decoder
         private System.Windows.Forms.TextBox tb_abc_bit;
         private System.Windows.Forms.CheckBox cb_isFloat;
         private System.Windows.Forms.Label lab_value_big;
+        private System.Windows.Forms.GroupBox gb_interpolate;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox tb_req_id;
+        private System.Windows.Forms.TextBox tb_byte23;
+        private System.Windows.Forms.CheckBox cb_byte23;
+        private System.Windows.Forms.TextBox tb_byte22;
+        private System.Windows.Forms.CheckBox cb_byte22;
+        private System.Windows.Forms.TextBox tb_byte21;
+        private System.Windows.Forms.CheckBox cb_byte21;
+        private System.Windows.Forms.TextBox tb_byte20;
+        private System.Windows.Forms.CheckBox cb_byte20;
+        private System.Windows.Forms.TextBox tb_byte19;
+        private System.Windows.Forms.CheckBox cb_byte19;
+        private System.Windows.Forms.TextBox tb_byte18;
+        private System.Windows.Forms.CheckBox cb_byte18;
+        private System.Windows.Forms.TextBox tb_byte17;
+        private System.Windows.Forms.CheckBox cb_byte17;
+        private System.Windows.Forms.TextBox tb_byte16;
+        private System.Windows.Forms.CheckBox cb_byte16;
+        private System.Windows.Forms.Label label15;
     }
 }
 

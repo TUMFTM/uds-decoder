@@ -30,6 +30,8 @@ namespace UDS_Decoder
         public uds_decoder()
         {
             InitializeComponent();
+            gb_interpolate.Visible = false;
+            gb_torque.Visible = false;
             nfi = NumberFormatInfo.InvariantInfo;
             //nfi.NumberDecimalSeparator = ".";
             get_com_ports();
@@ -48,6 +50,7 @@ namespace UDS_Decoder
             Match m0 = Regex.Match(str, @"\d+\t(\S+) ...  (\S{2}) (22)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?..", RegexOptions.Singleline);
             while (m0.Success)
             {
+                set_text_box_string(tb_req_id, m0.Groups[1].Value);
                 inclement_msg_counter();
                 str = str.Replace(m0.Groups[0].Value, "");
                 //Debug.WriteLine(m0.Groups[0].Value);
@@ -65,7 +68,7 @@ namespace UDS_Decoder
             }
 
             // multi line response
-            Match m1 = Regex.Match(str, @"\d+\t(\S+) ...  (10)(?> (\S{2}))(?> 62)?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?..\d+\t(?>\S+) ...  30 00 01 55 55 55 55 55 .(?>\d+\t(?>\S+) ...  (?>2\d)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)?.(?>\d+\t(?>\S+) ...  (?>2\d)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)?(?>\d+\t(?>\S+) ...  (?>2\d)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)?", RegexOptions.Singleline);
+            Match m1 = Regex.Match(str, @"\d+\t(\S+) ...  (1\d)(?> (\S{2}))(?> 62)?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?..\d+\t(?>\S+) ...  30 00 01 55 55 55 55 55 .(?>\d+\t(?>\S+) ...  (?>2\d)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)?.(?>\d+\t(?>\S+) ...  (?>2\d)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)?.(?>\d+\t(?>\S+) ...  (?>2\d)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)?.(?>\d+\t(?>\S+) ...  (?>2\d)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)?.(?>\d+\t(?>\S+) ...  (?>2\d)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)?", RegexOptions.Singleline);
             while (m1.Success)
             {
                 fill_data(m1.Groups);
@@ -93,7 +96,8 @@ namespace UDS_Decoder
 
         private void fill_data(GroupCollection g)
         {
-            TextBox [] tb = new TextBox[16] { tb_byte0, tb_byte1, tb_byte2, tb_byte3, tb_byte4, tb_byte5, tb_byte6, tb_byte7, tb_byte8, tb_byte9, tb_byte10, tb_byte11, tb_byte12, tb_byte13, tb_byte14, tb_byte15 };
+            const int b_count = 24;
+            TextBox [] tb = new TextBox[b_count] { tb_byte0, tb_byte1, tb_byte2, tb_byte3, tb_byte4, tb_byte5, tb_byte6, tb_byte7, tb_byte8, tb_byte9, tb_byte10, tb_byte11, tb_byte12, tb_byte13, tb_byte14, tb_byte15, tb_byte16, tb_byte17, tb_byte18, tb_byte19, tb_byte20, tb_byte21, tb_byte22, tb_byte23 };
             
             
             set_text_box_string(tb_id, g[1].Value);
@@ -106,9 +110,13 @@ namespace UDS_Decoder
             do {
                 t = check_fillvalue(g, pos);
                 pos += t;
-                set_text_box_string(tb[pos - offset], g[pos].Value);
+                if(pos - offset < b_count)
+                {
+                    set_text_box_string(tb[pos - offset], g[pos].Value);
+                }
+                
             } while (t > 0);
-            for ( int i = pos - offset+1; i<16 ; i++)
+            for ( int i = pos - offset+1; i< b_count; i++)
             {
                 set_text_box_string(tb[i], "");
             }
@@ -121,7 +129,7 @@ namespace UDS_Decoder
             for (int i = pos+1; i < g.Count; i++)
             {
                 if (g[i].Value != "") {
-                    Debug.WriteLine(i - pos);
+                    //Debug.WriteLine(i - pos);
                     return i-pos; }
             }
             return 0;
@@ -151,7 +159,7 @@ namespace UDS_Decoder
             ulong val = 0;
             double final_val = 0;
             double act_val = 0;
-            bool[] byte_checked = new bool[16];
+            bool[] byte_checked = new bool[24];
             int startbit = 0;
 
 
@@ -171,6 +179,14 @@ namespace UDS_Decoder
             if (cb_byte13.Checked) { hex[num_checked] = tb_byte13.Text; num_checked++; byte_checked[13] = true; }
             if (cb_byte14.Checked) { hex[num_checked] = tb_byte14.Text; num_checked++; byte_checked[14] = true; }
             if (cb_byte15.Checked) { hex[num_checked] = tb_byte15.Text; num_checked++; byte_checked[15] = true; }
+            if (cb_byte16.Checked) { hex[num_checked] = tb_byte16.Text; num_checked++; byte_checked[16] = true; }
+            if (cb_byte17.Checked) { hex[num_checked] = tb_byte17.Text; num_checked++; byte_checked[17] = true; }
+            if (cb_byte18.Checked) { hex[num_checked] = tb_byte18.Text; num_checked++; byte_checked[18] = true; }
+            if (cb_byte19.Checked) { hex[num_checked] = tb_byte19.Text; num_checked++; byte_checked[19] = true; }
+            if (cb_byte20.Checked) { hex[num_checked] = tb_byte20.Text; num_checked++; byte_checked[20] = true; }
+            if (cb_byte21.Checked) { hex[num_checked] = tb_byte21.Text; num_checked++; byte_checked[21] = true; }
+            if (cb_byte22.Checked) { hex[num_checked] = tb_byte22.Text; num_checked++; byte_checked[22] = true; }
+            if (cb_byte23.Checked) { hex[num_checked] = tb_byte23.Text; num_checked++; byte_checked[23] = true; }
 
             // set bitmask if changed bytes
             if (update_bitmask)
@@ -214,7 +230,7 @@ namespace UDS_Decoder
             try
             {
                 int min_checked = 0;
-                for (int i = 0; i < 16; i++)
+                for (int i = 0; i < 24; i++)
                 {
                     if (byte_checked[i]) { min_checked = i; break; }
                 }
@@ -298,18 +314,21 @@ namespace UDS_Decoder
                 sign = "f";
             }
 
-            long rqid = Convert.ToInt32(tb_id.Text, 16); //Convert.ToInt64(tb_id.Text); // Fix request vs Response
+            long rqid = 0;
+            if (tb_id.Text.Length > 0) { rqid = Convert.ToInt32(tb_id.Text, 16); } //Convert.ToInt64(tb_id.Text); // Fix request vs Response
             //Debug.WriteLine(rqid);
-            if (rqid < 0xFFF) { rqid -= 0x6A; }
-            else {rqid -= 0x20000; }
+            if (rqid > 0)
+            {
+                if (rqid >= 0x7E8 && rqid <= 0x7EF) { rqid -= 0x08; } // OBD specific functional adressing : 0x7E0 + (rqid-0x7E8)
+                else if (rqid < 0xFFF) { rqid -= 0x6A; }
+                else { rqid -= 0x20000; }
+            }
 
             string sst = "[CCAN=UDS,ReqID,0x"+ rqid.ToString("X") + ",GroupID,Freq,REG={0x22,0x"+tb_br0.Text+",0x" + tb_br1.Text + "}" +
                 ",TYPE={"+sign+"," + startbit.ToString(nfi) + ","+ (num_checked * 8) + ",MSB},CONV={"+tb_add.Text+","+tb_mult.Text+","+tb_div.Text+"},EXT]";
             set_text_box_string(tb_settingsstring, sst);
 
         }
-
-        
 
         private void watch_serial()
         {
@@ -507,6 +526,46 @@ namespace UDS_Decoder
             set_bitsmask();
         }
 
+        private void cb_byte16_CheckedChanged(object sender, EventArgs e)
+        {
+            set_bitsmask();
+        }
+
+        private void cb_byte17_CheckedChanged(object sender, EventArgs e)
+        {
+            set_bitsmask();
+        }
+
+        private void cb_byte18_CheckedChanged(object sender, EventArgs e)
+        {
+            set_bitsmask();
+        }
+
+        private void cb_byte19_CheckedChanged(object sender, EventArgs e)
+        {
+            set_bitsmask();
+        }
+
+        private void cb_byte20_CheckedChanged(object sender, EventArgs e)
+        {
+            set_bitsmask();
+        }
+
+        private void cb_byte21_CheckedChanged(object sender, EventArgs e)
+        {
+            set_bitsmask();
+        }
+
+        private void cb_byte22_CheckedChanged(object sender, EventArgs e)
+        {
+            set_bitsmask();
+        }
+
+        private void cb_byte23_CheckedChanged(object sender, EventArgs e)
+        {
+            set_bitsmask();
+        }
+
         private void tb_abc_in_TextChanged(object sender, EventArgs e)
         {
             int output = 0;
@@ -536,5 +595,7 @@ namespace UDS_Decoder
             tb_abc_bit.Text = (output*8).ToString();
 
         }
+
+
     }
 }
