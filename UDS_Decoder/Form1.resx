@@ -117,8 +117,45 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>127, 17</value>
+  </metadata>
   <metadata name="imageList1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
+  </metadata>
+  <data name="tb_group_man.ToolTip" xml:space="preserve">
+    <value>rv_off = 0,
+rv_config = 1,
+rv_always = 2,
+rv_driving = 3, * common request group
+rv_charging = 4,* common request group
+rv_driving_single = 5,
+rv_charging_single = 6,
+rv_driving_charging_single = 7,
+rv_driving_charging = 8, * common request group
+ 
+rv_vin = 997,
+# record data and make the results available to the logger software
+rv_hv_en = 1000,
+rv_ac_charging_active = 1001,
+rv_dc_charging_active = 1002,
+rv_kl15_on = 1003,
+rv_input_charge_current = 1004,
+rv_input_charge_voltage = 1005,
+rv_charge_plug_detected = 1006,
+rv_drive_mode = 1007,
+rv_vehicle_speed = 1008,
+rv_hv_battery_current = 1009,
+rv_hv_soc = 1010,
+rv_battery_temperature = 1011,
+rv_charge_power = 1012,
+rv_energy_charged_total = 1013,
+rv_hv_voltage = 1014,
+rv_energy_discharged_total = 1015,
+rv_ambient_air_temperature = 1016,</value>
+  </data>
+  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>224, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

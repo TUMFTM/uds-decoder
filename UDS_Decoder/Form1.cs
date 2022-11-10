@@ -12,6 +12,7 @@ using System.IO.Ports;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
 using System.Globalization;
+using System.Management;
 
 namespace UDS_Decoder
 {
@@ -36,16 +37,21 @@ namespace UDS_Decoder
             //nfi.NumberDecimalSeparator = ".";
             get_com_ports();
             form = this;
-            _serialPort = new SerialPort();
-            _serialPort.BaudRate = 115200;
+            _serialPort = new SerialPort
+            {
+                BaudRate = 115200
+            };
             sthread = new Thread(() => watch_serial());
+            sthread.IsBackground = true;
             sthread.Start();
             sthread.Suspend();
+            cb_group.SelectedIndex = 2;
+            // tb_byte0.BackColor = Color.FromArgb(255, 0, 0); // test color fading
         }
 
         private string filter_serial(string str)
         {
-            //Debug.WriteLine(str);
+            // Debug.WriteLine("Total: " +str + " --- END");
             // remove request
             Match m0 = Regex.Match(str, @"\d+\t(\S+) ...  (\S{2}) (22)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?..", RegexOptions.Singleline);
             while (m0.Success)
@@ -53,7 +59,7 @@ namespace UDS_Decoder
                 set_text_box_string(tb_req_id, m0.Groups[1].Value);
                 inclement_msg_counter();
                 str = str.Replace(m0.Groups[0].Value, "");
-                //Debug.WriteLine(m0.Groups[0].Value);
+                //Debug.WriteLine("M0: " + m0.Groups[0].Value);
                 m0 = m0.NextMatch();
             }
 
@@ -64,11 +70,12 @@ namespace UDS_Decoder
                 fill_data(m.Groups);
                 inclement_msg_counter();
                 str = str.Replace(m.Groups[0].Value, "");
+                //Debug.WriteLine("M1: " + m.Groups[0].Value);
                 m = m.NextMatch();
             }
 
             // multi line response
-            Match m1 = Regex.Match(str, @"\d+\t(\S+) ...  (1\d)(?> (\S{2}))(?> 62)?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?..\d+\t(?>\S+) ...  30 00 01 55 55 55 55 55 .(?>\d+\t(?>\S+) ...  (?>2\d)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)?.(?>\d+\t(?>\S+) ...  (?>2\d)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)?.(?>\d+\t(?>\S+) ...  (?>2\d)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)?.(?>\d+\t(?>\S+) ...  (?>2\d)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)?.(?>\d+\t(?>\S+) ...  (?>2\d)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)?", RegexOptions.Singleline);
+            Match m1 = Regex.Match(str, @"\d+\t(\S+) ...  (1\d)(?> (\S{2}))(?> 62)?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?..\d+\t(?>\S+) ...  30 00 01 .. .. .. .. .. .(?>\d+\t(?>\S+) ...  (?>2\d)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)?.(?>\d+\t(?>\S+) ...  (?>2\d)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)?.(?>\d+\t(?>\S+) ...  (?>2\d)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)?.(?>\d+\t(?>\S+) ...  (?>2\d)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)?.(?>\d+\t(?>\S+) ...  (?>2\d)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)?", RegexOptions.Singleline);
             while (m1.Success)
             {
                 fill_data(m1.Groups);
@@ -76,13 +83,22 @@ namespace UDS_Decoder
 
                 //for (int i = 0; i < 20; i++) {
                 //        Debug.WriteLine(i.ToString()+": " + m1.Groups[i].ToString()); }
-                //Debug.WriteLine("Match: --"+ m.Value + "--");
+                //Debug.WriteLine("Match: --"+ m1.Value + "--");
                 str = str.Replace(m1.Groups[0].Value, "");
                 //Debug.WriteLine(str);
 
                 m1 = m1.NextMatch();
             }
-            return str;
+
+            // remove old stuff if more than 15 lines in buffer
+
+            Match r = Regex.Match(str, @"((.*?)\n){30}");
+            if (r.Success)
+            {
+                //Debug.WriteLine("Deleting: " + r.Groups[0].Value);
+                 str = str.Replace(r.Groups[0].Value, "");
+            }
+                return str;
         }
 
         private void inclement_msg_counter()
@@ -94,33 +110,50 @@ namespace UDS_Decoder
             });
         }
 
+        private void update_highlight(object sender, EventArgs e)
+        {
+            const int b_count = 24;
+            TextBox[] tb = new TextBox[b_count] { tb_byte0, tb_byte1, tb_byte2, tb_byte3, tb_byte4, tb_byte5, tb_byte6, tb_byte7, tb_byte8, tb_byte9, tb_byte10, tb_byte11, tb_byte12, tb_byte13, tb_byte14, tb_byte15, tb_byte16, tb_byte17, tb_byte18, tb_byte19, tb_byte20, tb_byte21, tb_byte22, tb_byte23 };
+
+            for (int i = 0; i < b_count ; i++)
+            {
+                if( tb[i].BackColor.G < 255)
+                {
+                    //Debug.WriteLine(tb[i].BackColor.G);
+                    tb[i].BackColor = Color.FromArgb(255, tb[i].BackColor.G + 5, tb[i].BackColor.B + 5);
+                }
+            }
+        }
+
         private void fill_data(GroupCollection g)
         {
             const int b_count = 24;
             TextBox [] tb = new TextBox[b_count] { tb_byte0, tb_byte1, tb_byte2, tb_byte3, tb_byte4, tb_byte5, tb_byte6, tb_byte7, tb_byte8, tb_byte9, tb_byte10, tb_byte11, tb_byte12, tb_byte13, tb_byte14, tb_byte15, tb_byte16, tb_byte17, tb_byte18, tb_byte19, tb_byte20, tb_byte21, tb_byte22, tb_byte23 };
             
-            
             set_text_box_string(tb_id, g[1].Value);
             set_text_box_string(tb_br0, g[4].Value);
             set_text_box_string(tb_br1, g[5].Value);
-            int pos = 5;
-            int offset = 6;
+            int pos = 5; //5
+            int fcount = 0;
+            
+            //Debug.WriteLine("Count: " + g.Count);
 
-            int t = 0;
-            do {
-                t = check_fillvalue(g, pos);
+            int t = check_fillvalue(g, pos);
+            while (t > 0)
+            {
                 pos += t;
-                if(pos - offset < b_count)
-                {
-                    set_text_box_string(tb[pos - offset], g[pos].Value);
-                }
-                
-            } while (t > 0);
-            for ( int i = pos - offset+1; i< b_count; i++)
+                // Debug.WriteLine("Pos: " +pos + " Fcount:"+ fcount);
+                set_text_box_string_highlight(tb[fcount], g[pos].Value);
+                fcount++;
+                t = check_fillvalue(g, pos);
+            }
+            
+
+            
+            for ( int i = fcount; i< b_count; i++)
             {
                 set_text_box_string(tb[i], "");
             }
-            
             calc_value();
         }
 
@@ -128,14 +161,31 @@ namespace UDS_Decoder
         {
             for (int i = pos+1; i < g.Count; i++)
             {
+                
                 if (g[i].Value != "") {
-                    //Debug.WriteLine(i - pos);
-                    return i-pos; }
+                    // Debug.WriteLine("VAL: " + g[i].Value);
+                    return  i-pos;
+                }
             }
             return 0;
         }
 
 
+        void set_text_box_string_highlight(TextBox tb, string str)
+        {
+            tb.Invoke((MethodInvoker)delegate
+            {
+                //Debug.WriteLine("Comparing: "+tb.Text + "-" + str +"-");
+                if(tb.Text != str)
+                {
+                    tb.Text = str;
+                    if (str != "")
+                    {
+                        tb.BackColor = Color.FromArgb(255, 0, 0);
+                    }
+                }
+            });
+        }
         void set_text_box_string(TextBox tb, string str)
         {
             tb.Invoke((MethodInvoker)delegate
@@ -150,6 +200,27 @@ namespace UDS_Decoder
             {
                 lb.Text = str;
             });
+        }
+
+        void check_div()
+        {
+            if (tb_div.Text.Length > 0)
+            {
+                double div = double.Parse(tb_div.Text, nsi, nfi);
+                //Debug.Write("Div: "); Debug.WriteLine(div);
+                //Debug.Write("Div mod: "); Debug.WriteLine(div %1  );
+                if ( div %1 != 0)
+                {
+                    int c = 0;
+                    while (( (div* Math.Pow(10,c))  % 1) != 0)
+                    {
+                        c++;
+                    }
+
+                    tb_div.Text = (div * Math.Pow(10, c)).ToString(nfi);
+                    tb_mult.Text = (double.Parse(tb_mult.Text, nsi, nfi) * Math.Pow(10, c)).ToString(nfi);
+                }
+            }
         }
 
         private void calc_value()
@@ -249,7 +320,7 @@ namespace UDS_Decoder
                 //int bytes = (bitlength + startbit) / 8 + 1 * ((((bitlength + startbit) % 8) > 0)?1:0);
                 int bytes = (bitlength) / 8 + 1 * ((((bitlength + startbit) % 8) > 0) ? 1 : 0);
                 int startbyte = min_checked; // (startbit- offset) / 8;
-                Debug.WriteLine(startbyte.ToString());
+                //Debug.WriteLine(startbyte.ToString());
 
                 for (int i = bytes - 1; i > -1; i--)
                 {
@@ -261,21 +332,14 @@ namespace UDS_Decoder
                 }
                 else
                 {
-                    if (cb_signed.Checked)
+                    double pre = val;
+                    if (cb_signed.Checked && ((val) & (ulong)1 << (bitlength - 1)) == (ulong)1 << (bitlength - 1))
                     {
-                        if (((val) & (ulong)1 << (bitlength - 1)) == (ulong)1 << (bitlength - 1)) // sign bit is set
-                        {
-                            final_val = ((double)(((double)val - (double)(bitm)) * double.Parse(tb_mult.Text, nsi, nfi)) / double.Parse(tb_div.Text, nsi, nfi)) + double.Parse(tb_add.Text, nsi, nfi);
-                        }
-                        else
-                        {
-                            final_val = ((double)(val * double.Parse(tb_mult.Text, nsi, nfi)) / double.Parse(tb_div.Text, nsi, nfi)) + double.Parse(tb_add.Text, nsi, nfi);
-                        }
+                        pre = (double)val - (double)bitm -1;
                     }
-                    else
-                    {
-                        final_val = ((double)(val * double.Parse(tb_mult.Text, nsi, nfi)) / double.Parse(tb_div.Text, nsi, nfi)) + double.Parse(tb_add.Text, nsi, nfi);
-                    }
+
+                    final_val = ((double)(pre * double.Parse(tb_mult.Text, nsi, nfi)) / double.Parse(tb_div.Text, nsi, nfi)) + double.Parse(tb_add.Text, nsi, nfi);
+                    
                 }
 
 
@@ -291,12 +355,12 @@ namespace UDS_Decoder
                 final_val = 0;
             }
 
-            double m;
-            double t;
+            double m = 0;
+            double t = 0;
             try
             {
-                m = (double.Parse(tb_ax.Text, nsi, nfi) - double.Parse(tb_bx.Text, nsi, nfi)) / (double.Parse(tb_ay.Text, nsi, nfi) - double.Parse(tb_by.Text, nsi, nfi));
-                t = -double.Parse(tb_ax.Text) * m;
+                //m = (double.Parse(tb_ax.Text, nsi, nfi) - double.Parse(tb_bx.Text, nsi, nfi)) / (double.Parse(tb_ay.Text, nsi, nfi) - double.Parse(tb_by.Text, nsi, nfi));
+                //t = -double.Parse(tb_ax.Text) * m;
             }
             catch
             {
@@ -324,9 +388,31 @@ namespace UDS_Decoder
                 else { rqid -= 0x20000; }
             }
 
-            string sst = "[CCAN=UDS,ReqID,0x"+ rqid.ToString("X") + ",GroupID,Freq,REG={0x22,0x"+tb_br0.Text+",0x" + tb_br1.Text + "}" +
+            string sst = "[CCAN=UDS,"+ tb_reqid.Text +",0x"+ rqid.ToString("X") + "," + tb_group_man.Text + "," + tb_freq.Text +",REG={0x22,0x"+tb_br0.Text+",0x" + tb_br1.Text + "}" +
                 ",TYPE={"+sign+"," + startbit.ToString(nfi) + ","+ (num_checked * 8) + ",MSB},CONV={"+tb_add.Text+","+tb_mult.Text+","+tb_div.Text+"},EXT]";
             set_text_box_string(tb_settingsstring, sst);
+
+
+            string off = tb_reqid.Text + "," + tb_nameVar.Text + "," + tb_unit.Text + "," + tb_nameEN.Text + "," + tb_nameDE.Text;
+            set_text_box_string(tb_offlineParser, off);
+
+            string sbb = "null , null";
+            if (tb_br0.Text.Length > 0 && tb_br1.Text.Length > 0)
+            {
+                sbb = Convert.ToInt32(tb_br0.Text, 16) + ", " + Convert.ToInt32(tb_br1.Text, 16);
+            }
+
+            string rqids = "DEFAULT";
+            if (tb_reqid.Text.Length > 1)
+            {
+                rqids = tb_reqid.Text;
+            }
+
+            string sql = "INSERT into vehicle.can_request" +
+                           //"insert into vehicle.can_request (can_type, value_id, group_id, can_id, reg_0, reg_1, reg_2, reg_3, convtype, \"add\", mult, div, def_rate, description, byteorder, params, start_bit, \"bit_length\", mux_byte, mux_value)" +
+                           " values ("+ rqids +",'UDS', VALUE_ID , "+ tb_group_man.Text +", " + rqid.ToString() + ", 34, " + sbb + ", null, '" +
+                           sign + "', " + tb_add.Text + ", " + tb_mult.Text + ", " + tb_div.Text + ", 1000 , '"+ tb_comment.Text +"', 'MSB', 'EXT', " + startbit.ToString(nfi) + ", " + (num_checked * 8) + ", null, null);";
+            set_text_box_string(sql_insert_tb, sql);
 
         }
 
@@ -353,10 +439,21 @@ namespace UDS_Decoder
 
         private void get_com_ports()
         {
-            string[] ports = SerialPort.GetPortNames();
-            selector_com_port.Items.Clear();
-            selector_com_port.Items.AddRange(ports);
-            selector_com_port.SelectedIndex = selector_com_port.Items.Count - 1;
+            using (var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PnPEntity WHERE Caption like '%(COM%'"))
+            {
+                var portnames = SerialPort.GetPortNames();
+                var ports2 = searcher.Get().Cast<ManagementBaseObject>().ToList().Select(p => p["Caption"].ToString());
+                var ports = new List<Tuple<string, string>>();
+
+                foreach (string t in portnames)
+                {
+                    var tp = Tuple.Create(t, t + "     " + Regex.Replace(ports2.FirstOrDefault(s => s.Contains(t)), @"\(COM\d*?\)", ""));
+                    ports.Add(tp);
+                }
+                selector_com_port.DisplayMember = "Item2";
+                selector_com_port.ValueMember = "Item1";
+                selector_com_port.DataSource = ports;
+            }
         }
 
         private void connect(bool dis)
@@ -391,6 +488,7 @@ namespace UDS_Decoder
                 if (_serialPort.IsOpen)
                 {
                     btn_connect.Text = "Disconnect";
+                    msgcounter = 0;
                     uart_connected = true;
                     selector_com_port.Enabled = false;
                     btn_com_port_refresh.Enabled = false;
@@ -404,7 +502,8 @@ namespace UDS_Decoder
         {
             string port = "";
             form.selector_com_port.Invoke((MethodInvoker)delegate {
-                port = selector_com_port.SelectedItem.ToString();
+                var p = (Tuple<string, string>)(selector_com_port.SelectedItem);
+                port = p.Item1;
             });
             return port;
         }
@@ -596,6 +695,72 @@ namespace UDS_Decoder
 
         }
 
+        private void tb_bitmask_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
 
+        private void tb_div_TextChanged(object sender, EventArgs e)
+        {
+            check_div();
+        }
+
+        private void cb_group_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cb_group.SelectedIndex == 0)
+            {
+                tb_group_man.Text = "3";
+            }
+            if (cb_group.SelectedIndex == 1)
+            {
+                tb_group_man.Text = "4";
+            }
+            if (cb_group.SelectedIndex == 2)
+            {
+                tb_group_man.Text = "8";
+            }
+            if (cb_group.SelectedIndex == 3)
+            {
+                tb_group_man.ReadOnly = false;
+                tb_group_man.Text = "";
+            }
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(tb_settingsstring.Text);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(sql_insert_tb.Text);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(tb_offlineParser.Text);
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.linkedin.com/in/florian-schmid/");
+        }
+
+        private void selector_com_port_DropDownClosed(object sender, EventArgs e)
+        {
+             this.BeginInvoke(new Action(() => { selector_com_port.Select(0, 0); }));
+
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://github.com/TUMFTM/uds-decoder");
+        }
+
+        private void uds_decoder_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            
+        }
     }
 }

@@ -105,6 +105,25 @@ namespace UDS_Decoder
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.tb_byte23 = new System.Windows.Forms.TextBox();
+            this.cb_byte23 = new System.Windows.Forms.CheckBox();
+            this.tb_byte22 = new System.Windows.Forms.TextBox();
+            this.cb_byte22 = new System.Windows.Forms.CheckBox();
+            this.tb_byte21 = new System.Windows.Forms.TextBox();
+            this.cb_byte21 = new System.Windows.Forms.CheckBox();
+            this.tb_byte20 = new System.Windows.Forms.TextBox();
+            this.cb_byte20 = new System.Windows.Forms.CheckBox();
+            this.tb_byte19 = new System.Windows.Forms.TextBox();
+            this.cb_byte19 = new System.Windows.Forms.CheckBox();
+            this.tb_byte18 = new System.Windows.Forms.TextBox();
+            this.cb_byte18 = new System.Windows.Forms.CheckBox();
+            this.tb_byte17 = new System.Windows.Forms.TextBox();
+            this.cb_byte17 = new System.Windows.Forms.CheckBox();
+            this.tb_byte16 = new System.Windows.Forms.TextBox();
+            this.cb_byte16 = new System.Windows.Forms.CheckBox();
             this.label14 = new System.Windows.Forms.Label();
             this.tb_req_id = new System.Windows.Forms.TextBox();
             this.gb_interpolate = new System.Windows.Forms.GroupBox();
@@ -117,31 +136,48 @@ namespace UDS_Decoder
             this.tb_abc_in = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.lab_value_big = new System.Windows.Forms.Label();
-            this.tb_byte16 = new System.Windows.Forms.TextBox();
-            this.cb_byte16 = new System.Windows.Forms.CheckBox();
-            this.tb_byte17 = new System.Windows.Forms.TextBox();
-            this.cb_byte17 = new System.Windows.Forms.CheckBox();
-            this.tb_byte18 = new System.Windows.Forms.TextBox();
-            this.cb_byte18 = new System.Windows.Forms.CheckBox();
-            this.tb_byte19 = new System.Windows.Forms.TextBox();
-            this.cb_byte19 = new System.Windows.Forms.CheckBox();
-            this.tb_byte20 = new System.Windows.Forms.TextBox();
-            this.cb_byte20 = new System.Windows.Forms.CheckBox();
-            this.tb_byte21 = new System.Windows.Forms.TextBox();
-            this.cb_byte21 = new System.Windows.Forms.CheckBox();
-            this.tb_byte22 = new System.Windows.Forms.TextBox();
-            this.cb_byte22 = new System.Windows.Forms.CheckBox();
-            this.tb_byte23 = new System.Windows.Forms.TextBox();
-            this.cb_byte23 = new System.Windows.Forms.CheckBox();
-            this.label15 = new System.Windows.Forms.Label();
+            this.sql_insert_tb = new System.Windows.Forms.TextBox();
+            this.gb_Connection = new System.Windows.Forms.GroupBox();
+            this.lab_counter = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.tb_comment = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.tb_offlineParser = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.tb_group_man = new System.Windows.Forms.TextBox();
+            this.cb_group = new System.Windows.Forms.ComboBox();
+            this.tb_freq = new System.Windows.Forms.TextBox();
+            this.tb_reqid = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.tb_unit = new System.Windows.Forms.TextBox();
+            this.tb_nameVar = new System.Windows.Forms.TextBox();
+            this.tb_nameEN = new System.Windows.Forms.TextBox();
+            this.tb_nameDE = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.gb_interpolate.SuspendLayout();
             this.gb_torque.SuspendLayout();
+            this.gb_Connection.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_connect
             // 
-            this.btn_connect.Location = new System.Drawing.Point(108, 12);
+            this.btn_connect.Location = new System.Drawing.Point(102, 19);
             this.btn_connect.Name = "btn_connect";
             this.btn_connect.Size = new System.Drawing.Size(75, 23);
             this.btn_connect.TabIndex = 0;
@@ -151,11 +187,15 @@ namespace UDS_Decoder
             // 
             // selector_com_port
             // 
+            this.selector_com_port.DropDownWidth = 600;
             this.selector_com_port.FormattingEnabled = true;
-            this.selector_com_port.Location = new System.Drawing.Point(12, 12);
+            this.selector_com_port.Location = new System.Drawing.Point(6, 19);
+            this.selector_com_port.MaximumSize = new System.Drawing.Size(200, 0);
             this.selector_com_port.Name = "selector_com_port";
             this.selector_com_port.Size = new System.Drawing.Size(66, 21);
             this.selector_com_port.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.selector_com_port, "Select Serial port of Teensy CAN Sniffer");
+            this.selector_com_port.DropDownClosed += new System.EventHandler(this.selector_com_port_DropDownClosed);
             // 
             // tb_mult
             // 
@@ -168,7 +208,7 @@ namespace UDS_Decoder
             // cb_byte0
             // 
             this.cb_byte0.AutoSize = true;
-            this.cb_byte0.Location = new System.Drawing.Point(216, 51);
+            this.cb_byte0.Location = new System.Drawing.Point(232, 51);
             this.cb_byte0.Name = "cb_byte0";
             this.cb_byte0.Size = new System.Drawing.Size(35, 17);
             this.cb_byte0.TabIndex = 3;
@@ -178,14 +218,14 @@ namespace UDS_Decoder
             // 
             // tb_byte0
             // 
-            this.tb_byte0.Location = new System.Drawing.Point(216, 25);
+            this.tb_byte0.Location = new System.Drawing.Point(232, 25);
             this.tb_byte0.Name = "tb_byte0";
             this.tb_byte0.Size = new System.Drawing.Size(36, 20);
             this.tb_byte0.TabIndex = 4;
             // 
             // tb_byte1
             // 
-            this.tb_byte1.Location = new System.Drawing.Point(257, 25);
+            this.tb_byte1.Location = new System.Drawing.Point(273, 25);
             this.tb_byte1.Name = "tb_byte1";
             this.tb_byte1.Size = new System.Drawing.Size(36, 20);
             this.tb_byte1.TabIndex = 6;
@@ -193,7 +233,7 @@ namespace UDS_Decoder
             // cb_byte1
             // 
             this.cb_byte1.AutoSize = true;
-            this.cb_byte1.Location = new System.Drawing.Point(257, 51);
+            this.cb_byte1.Location = new System.Drawing.Point(273, 51);
             this.cb_byte1.Name = "cb_byte1";
             this.cb_byte1.Size = new System.Drawing.Size(32, 17);
             this.cb_byte1.TabIndex = 5;
@@ -203,7 +243,7 @@ namespace UDS_Decoder
             // 
             // tb_byte2
             // 
-            this.tb_byte2.Location = new System.Drawing.Point(298, 25);
+            this.tb_byte2.Location = new System.Drawing.Point(314, 25);
             this.tb_byte2.Name = "tb_byte2";
             this.tb_byte2.Size = new System.Drawing.Size(36, 20);
             this.tb_byte2.TabIndex = 8;
@@ -211,7 +251,7 @@ namespace UDS_Decoder
             // cb_byte2
             // 
             this.cb_byte2.AutoSize = true;
-            this.cb_byte2.Location = new System.Drawing.Point(298, 51);
+            this.cb_byte2.Location = new System.Drawing.Point(314, 51);
             this.cb_byte2.Name = "cb_byte2";
             this.cb_byte2.Size = new System.Drawing.Size(35, 17);
             this.cb_byte2.TabIndex = 7;
@@ -221,7 +261,7 @@ namespace UDS_Decoder
             // 
             // tb_byte3
             // 
-            this.tb_byte3.Location = new System.Drawing.Point(339, 25);
+            this.tb_byte3.Location = new System.Drawing.Point(355, 25);
             this.tb_byte3.Name = "tb_byte3";
             this.tb_byte3.Size = new System.Drawing.Size(36, 20);
             this.tb_byte3.TabIndex = 10;
@@ -229,7 +269,7 @@ namespace UDS_Decoder
             // cb_byte3
             // 
             this.cb_byte3.AutoSize = true;
-            this.cb_byte3.Location = new System.Drawing.Point(339, 51);
+            this.cb_byte3.Location = new System.Drawing.Point(355, 51);
             this.cb_byte3.Name = "cb_byte3";
             this.cb_byte3.Size = new System.Drawing.Size(35, 17);
             this.cb_byte3.TabIndex = 9;
@@ -239,7 +279,7 @@ namespace UDS_Decoder
             // 
             // tb_byte4
             // 
-            this.tb_byte4.Location = new System.Drawing.Point(380, 25);
+            this.tb_byte4.Location = new System.Drawing.Point(396, 25);
             this.tb_byte4.Name = "tb_byte4";
             this.tb_byte4.Size = new System.Drawing.Size(36, 20);
             this.tb_byte4.TabIndex = 12;
@@ -247,7 +287,7 @@ namespace UDS_Decoder
             // cb_byte4
             // 
             this.cb_byte4.AutoSize = true;
-            this.cb_byte4.Location = new System.Drawing.Point(380, 51);
+            this.cb_byte4.Location = new System.Drawing.Point(396, 51);
             this.cb_byte4.Name = "cb_byte4";
             this.cb_byte4.Size = new System.Drawing.Size(35, 17);
             this.cb_byte4.TabIndex = 11;
@@ -283,8 +323,10 @@ namespace UDS_Decoder
             // 
             // tb_val
             // 
-            this.tb_val.Location = new System.Drawing.Point(127, 116);
+            this.tb_val.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_val.Location = new System.Drawing.Point(124, 116);
             this.tb_val.Name = "tb_val";
+            this.tb_val.ReadOnly = true;
             this.tb_val.Size = new System.Drawing.Size(98, 20);
             this.tb_val.TabIndex = 16;
             // 
@@ -304,17 +346,19 @@ namespace UDS_Decoder
             this.tb_div.Size = new System.Drawing.Size(73, 20);
             this.tb_div.TabIndex = 17;
             this.tb_div.Text = "1";
+            this.tb_div.TextChanged += new System.EventHandler(this.tb_div_TextChanged);
             // 
             // tb_id
             // 
-            this.tb_id.Location = new System.Drawing.Point(84, 25);
+            this.tb_id.Location = new System.Drawing.Point(87, 25);
             this.tb_id.Name = "tb_id";
             this.tb_id.Size = new System.Drawing.Size(60, 20);
             this.tb_id.TabIndex = 19;
+            this.toolTip1.SetToolTip(this.tb_id, "Response CAN ID");
             // 
             // btn_com_port_refresh
             // 
-            this.btn_com_port_refresh.Location = new System.Drawing.Point(84, 12);
+            this.btn_com_port_refresh.Location = new System.Drawing.Point(78, 19);
             this.btn_com_port_refresh.Name = "btn_com_port_refresh";
             this.btn_com_port_refresh.Size = new System.Drawing.Size(18, 23);
             this.btn_com_port_refresh.TabIndex = 20;
@@ -330,26 +374,29 @@ namespace UDS_Decoder
             this.cb_signed.Size = new System.Drawing.Size(59, 17);
             this.cb_signed.TabIndex = 21;
             this.cb_signed.Text = "Signed";
+            this.toolTip1.SetToolTip(this.cb_signed, "Two\'s complement signed integer");
             this.cb_signed.UseVisualStyleBackColor = true;
             // 
             // tb_br0
             // 
-            this.tb_br0.Location = new System.Drawing.Point(146, 25);
+            this.tb_br0.Location = new System.Drawing.Point(153, 25);
             this.tb_br0.Name = "tb_br0";
             this.tb_br0.Size = new System.Drawing.Size(27, 20);
             this.tb_br0.TabIndex = 22;
+            this.toolTip1.SetToolTip(this.tb_br0, "Register address read by 0x22 UDS command");
             // 
             // tb_br1
             // 
-            this.tb_br1.Location = new System.Drawing.Point(175, 25);
+            this.tb_br1.Location = new System.Drawing.Point(182, 25);
             this.tb_br1.Name = "tb_br1";
             this.tb_br1.Size = new System.Drawing.Size(27, 20);
             this.tb_br1.TabIndex = 23;
+            this.toolTip1.SetToolTip(this.tb_br1, "Register address read by 0x22 UDS command");
             // 
             // lab_msg_counter
             // 
             this.lab_msg_counter.AutoSize = true;
-            this.lab_msg_counter.Location = new System.Drawing.Point(205, 17);
+            this.lab_msg_counter.Location = new System.Drawing.Point(95, 50);
             this.lab_msg_counter.Name = "lab_msg_counter";
             this.lab_msg_counter.Size = new System.Drawing.Size(13, 13);
             this.lab_msg_counter.TabIndex = 24;
@@ -357,7 +404,7 @@ namespace UDS_Decoder
             // 
             // tb_byte5
             // 
-            this.tb_byte5.Location = new System.Drawing.Point(422, 25);
+            this.tb_byte5.Location = new System.Drawing.Point(438, 25);
             this.tb_byte5.Name = "tb_byte5";
             this.tb_byte5.Size = new System.Drawing.Size(36, 20);
             this.tb_byte5.TabIndex = 26;
@@ -365,7 +412,7 @@ namespace UDS_Decoder
             // cb_byte5
             // 
             this.cb_byte5.AutoSize = true;
-            this.cb_byte5.Location = new System.Drawing.Point(422, 51);
+            this.cb_byte5.Location = new System.Drawing.Point(438, 51);
             this.cb_byte5.Name = "cb_byte5";
             this.cb_byte5.Size = new System.Drawing.Size(35, 17);
             this.cb_byte5.TabIndex = 25;
@@ -375,7 +422,7 @@ namespace UDS_Decoder
             // 
             // tb_byte6
             // 
-            this.tb_byte6.Location = new System.Drawing.Point(464, 25);
+            this.tb_byte6.Location = new System.Drawing.Point(480, 25);
             this.tb_byte6.Name = "tb_byte6";
             this.tb_byte6.Size = new System.Drawing.Size(36, 20);
             this.tb_byte6.TabIndex = 28;
@@ -383,7 +430,7 @@ namespace UDS_Decoder
             // cb_byte6
             // 
             this.cb_byte6.AutoSize = true;
-            this.cb_byte6.Location = new System.Drawing.Point(464, 51);
+            this.cb_byte6.Location = new System.Drawing.Point(480, 51);
             this.cb_byte6.Name = "cb_byte6";
             this.cb_byte6.Size = new System.Drawing.Size(35, 17);
             this.cb_byte6.TabIndex = 27;
@@ -393,7 +440,7 @@ namespace UDS_Decoder
             // 
             // tb_byte7
             // 
-            this.tb_byte7.Location = new System.Drawing.Point(506, 25);
+            this.tb_byte7.Location = new System.Drawing.Point(522, 25);
             this.tb_byte7.Name = "tb_byte7";
             this.tb_byte7.Size = new System.Drawing.Size(36, 20);
             this.tb_byte7.TabIndex = 30;
@@ -401,7 +448,7 @@ namespace UDS_Decoder
             // cb_byte7
             // 
             this.cb_byte7.AutoSize = true;
-            this.cb_byte7.Location = new System.Drawing.Point(506, 51);
+            this.cb_byte7.Location = new System.Drawing.Point(522, 51);
             this.cb_byte7.Name = "cb_byte7";
             this.cb_byte7.Size = new System.Drawing.Size(35, 17);
             this.cb_byte7.TabIndex = 29;
@@ -411,7 +458,7 @@ namespace UDS_Decoder
             // 
             // tb_byte8
             // 
-            this.tb_byte8.Location = new System.Drawing.Point(548, 25);
+            this.tb_byte8.Location = new System.Drawing.Point(564, 25);
             this.tb_byte8.Name = "tb_byte8";
             this.tb_byte8.Size = new System.Drawing.Size(36, 20);
             this.tb_byte8.TabIndex = 32;
@@ -419,7 +466,7 @@ namespace UDS_Decoder
             // cb_byte8
             // 
             this.cb_byte8.AutoSize = true;
-            this.cb_byte8.Location = new System.Drawing.Point(548, 51);
+            this.cb_byte8.Location = new System.Drawing.Point(564, 51);
             this.cb_byte8.Name = "cb_byte8";
             this.cb_byte8.Size = new System.Drawing.Size(35, 17);
             this.cb_byte8.TabIndex = 31;
@@ -429,7 +476,7 @@ namespace UDS_Decoder
             // 
             // tb_byte9
             // 
-            this.tb_byte9.Location = new System.Drawing.Point(590, 25);
+            this.tb_byte9.Location = new System.Drawing.Point(606, 25);
             this.tb_byte9.Name = "tb_byte9";
             this.tb_byte9.Size = new System.Drawing.Size(36, 20);
             this.tb_byte9.TabIndex = 34;
@@ -437,7 +484,7 @@ namespace UDS_Decoder
             // cb_byte9
             // 
             this.cb_byte9.AutoSize = true;
-            this.cb_byte9.Location = new System.Drawing.Point(590, 51);
+            this.cb_byte9.Location = new System.Drawing.Point(606, 51);
             this.cb_byte9.Name = "cb_byte9";
             this.cb_byte9.Size = new System.Drawing.Size(32, 17);
             this.cb_byte9.TabIndex = 33;
@@ -447,7 +494,7 @@ namespace UDS_Decoder
             // 
             // tb_byte10
             // 
-            this.tb_byte10.Location = new System.Drawing.Point(632, 25);
+            this.tb_byte10.Location = new System.Drawing.Point(648, 25);
             this.tb_byte10.Name = "tb_byte10";
             this.tb_byte10.Size = new System.Drawing.Size(36, 20);
             this.tb_byte10.TabIndex = 36;
@@ -455,7 +502,7 @@ namespace UDS_Decoder
             // cb_byte10
             // 
             this.cb_byte10.AutoSize = true;
-            this.cb_byte10.Location = new System.Drawing.Point(632, 51);
+            this.cb_byte10.Location = new System.Drawing.Point(648, 51);
             this.cb_byte10.Name = "cb_byte10";
             this.cb_byte10.Size = new System.Drawing.Size(38, 17);
             this.cb_byte10.TabIndex = 35;
@@ -465,7 +512,8 @@ namespace UDS_Decoder
             // 
             // tb_byte11
             // 
-            this.tb_byte11.Location = new System.Drawing.Point(674, 25);
+            this.tb_byte11.BackColor = System.Drawing.Color.White;
+            this.tb_byte11.Location = new System.Drawing.Point(690, 25);
             this.tb_byte11.Name = "tb_byte11";
             this.tb_byte11.Size = new System.Drawing.Size(36, 20);
             this.tb_byte11.TabIndex = 38;
@@ -473,7 +521,7 @@ namespace UDS_Decoder
             // cb_byte11
             // 
             this.cb_byte11.AutoSize = true;
-            this.cb_byte11.Location = new System.Drawing.Point(674, 51);
+            this.cb_byte11.Location = new System.Drawing.Point(690, 51);
             this.cb_byte11.Name = "cb_byte11";
             this.cb_byte11.Size = new System.Drawing.Size(38, 17);
             this.cb_byte11.TabIndex = 37;
@@ -483,7 +531,7 @@ namespace UDS_Decoder
             // 
             // tb_byte14
             // 
-            this.tb_byte14.Location = new System.Drawing.Point(801, 25);
+            this.tb_byte14.Location = new System.Drawing.Point(817, 25);
             this.tb_byte14.Name = "tb_byte14";
             this.tb_byte14.Size = new System.Drawing.Size(36, 20);
             this.tb_byte14.TabIndex = 44;
@@ -491,7 +539,7 @@ namespace UDS_Decoder
             // cb_byte14
             // 
             this.cb_byte14.AutoSize = true;
-            this.cb_byte14.Location = new System.Drawing.Point(801, 51);
+            this.cb_byte14.Location = new System.Drawing.Point(817, 51);
             this.cb_byte14.Name = "cb_byte14";
             this.cb_byte14.Size = new System.Drawing.Size(38, 17);
             this.cb_byte14.TabIndex = 43;
@@ -501,7 +549,7 @@ namespace UDS_Decoder
             // 
             // tb_byte13
             // 
-            this.tb_byte13.Location = new System.Drawing.Point(759, 25);
+            this.tb_byte13.Location = new System.Drawing.Point(775, 25);
             this.tb_byte13.Name = "tb_byte13";
             this.tb_byte13.Size = new System.Drawing.Size(36, 20);
             this.tb_byte13.TabIndex = 42;
@@ -509,7 +557,7 @@ namespace UDS_Decoder
             // cb_byte13
             // 
             this.cb_byte13.AutoSize = true;
-            this.cb_byte13.Location = new System.Drawing.Point(759, 51);
+            this.cb_byte13.Location = new System.Drawing.Point(775, 51);
             this.cb_byte13.Name = "cb_byte13";
             this.cb_byte13.Size = new System.Drawing.Size(38, 17);
             this.cb_byte13.TabIndex = 41;
@@ -519,7 +567,7 @@ namespace UDS_Decoder
             // 
             // tb_byte12
             // 
-            this.tb_byte12.Location = new System.Drawing.Point(717, 25);
+            this.tb_byte12.Location = new System.Drawing.Point(733, 25);
             this.tb_byte12.Name = "tb_byte12";
             this.tb_byte12.Size = new System.Drawing.Size(36, 20);
             this.tb_byte12.TabIndex = 40;
@@ -527,7 +575,7 @@ namespace UDS_Decoder
             // cb_byte12
             // 
             this.cb_byte12.AutoSize = true;
-            this.cb_byte12.Location = new System.Drawing.Point(717, 51);
+            this.cb_byte12.Location = new System.Drawing.Point(733, 51);
             this.cb_byte12.Name = "cb_byte12";
             this.cb_byte12.Size = new System.Drawing.Size(38, 17);
             this.cb_byte12.TabIndex = 39;
@@ -537,7 +585,7 @@ namespace UDS_Decoder
             // 
             // tb_act_value
             // 
-            this.tb_act_value.Location = new System.Drawing.Point(164, 164);
+            this.tb_act_value.Location = new System.Drawing.Point(80, 21);
             this.tb_act_value.Name = "tb_act_value";
             this.tb_act_value.Size = new System.Drawing.Size(77, 20);
             this.tb_act_value.TabIndex = 45;
@@ -546,7 +594,7 @@ namespace UDS_Decoder
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(94, 167);
+            this.label4.Location = new System.Drawing.Point(10, 24);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(67, 13);
             this.label4.TabIndex = 46;
@@ -555,15 +603,16 @@ namespace UDS_Decoder
             // tb_factor
             // 
             this.tb_factor.Enabled = false;
-            this.tb_factor.Location = new System.Drawing.Point(164, 191);
+            this.tb_factor.Location = new System.Drawing.Point(80, 48);
             this.tb_factor.Name = "tb_factor";
+            this.tb_factor.ReadOnly = true;
             this.tb_factor.Size = new System.Drawing.Size(77, 20);
             this.tb_factor.TabIndex = 47;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(121, 194);
+            this.label5.Location = new System.Drawing.Point(37, 51);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(37, 13);
             this.label5.TabIndex = 48;
@@ -571,7 +620,7 @@ namespace UDS_Decoder
             // 
             // tb_byte15
             // 
-            this.tb_byte15.Location = new System.Drawing.Point(844, 25);
+            this.tb_byte15.Location = new System.Drawing.Point(860, 25);
             this.tb_byte15.Name = "tb_byte15";
             this.tb_byte15.Size = new System.Drawing.Size(36, 20);
             this.tb_byte15.TabIndex = 50;
@@ -579,7 +628,7 @@ namespace UDS_Decoder
             // cb_byte15
             // 
             this.cb_byte15.AutoSize = true;
-            this.cb_byte15.Location = new System.Drawing.Point(844, 51);
+            this.cb_byte15.Location = new System.Drawing.Point(860, 51);
             this.cb_byte15.Name = "cb_byte15";
             this.cb_byte15.Size = new System.Drawing.Size(38, 17);
             this.cb_byte15.TabIndex = 49;
@@ -590,15 +639,16 @@ namespace UDS_Decoder
             // tb_factor2
             // 
             this.tb_factor2.Enabled = false;
-            this.tb_factor2.Location = new System.Drawing.Point(250, 191);
+            this.tb_factor2.Location = new System.Drawing.Point(166, 48);
             this.tb_factor2.Name = "tb_factor2";
+            this.tb_factor2.ReadOnly = true;
             this.tb_factor2.Size = new System.Drawing.Size(77, 20);
             this.tb_factor2.TabIndex = 51;
             // 
             // lab_startbit
             // 
             this.lab_startbit.AutoSize = true;
-            this.lab_startbit.Location = new System.Drawing.Point(861, 12);
+            this.lab_startbit.Location = new System.Drawing.Point(265, 89);
             this.lab_startbit.Name = "lab_startbit";
             this.lab_startbit.Size = new System.Drawing.Size(43, 13);
             this.lab_startbit.TabIndex = 52;
@@ -607,7 +657,7 @@ namespace UDS_Decoder
             // lab_length
             // 
             this.lab_length.AutoSize = true;
-            this.lab_length.Location = new System.Drawing.Point(861, 33);
+            this.lab_length.Location = new System.Drawing.Point(265, 110);
             this.lab_length.Name = "lab_length";
             this.lab_length.Size = new System.Drawing.Size(43, 13);
             this.lab_length.TabIndex = 53;
@@ -722,6 +772,7 @@ namespace UDS_Decoder
             this.tb_ssr_t.Enabled = false;
             this.tb_ssr_t.Location = new System.Drawing.Point(147, 119);
             this.tb_ssr_t.Name = "tb_ssr_t";
+            this.tb_ssr_t.ReadOnly = true;
             this.tb_ssr_t.Size = new System.Drawing.Size(77, 20);
             this.tb_ssr_t.TabIndex = 68;
             // 
@@ -739,23 +790,27 @@ namespace UDS_Decoder
             this.tb_ssr_m.Enabled = false;
             this.tb_ssr_m.Location = new System.Drawing.Point(61, 119);
             this.tb_ssr_m.Name = "tb_ssr_m";
+            this.tb_ssr_m.ReadOnly = true;
             this.tb_ssr_m.Size = new System.Drawing.Size(77, 20);
             this.tb_ssr_m.TabIndex = 66;
             // 
             // tb_settingsstring
             // 
-            this.tb_settingsstring.Location = new System.Drawing.Point(264, 14);
+            this.tb_settingsstring.Location = new System.Drawing.Point(80, 67);
             this.tb_settingsstring.Name = "tb_settingsstring";
-            this.tb_settingsstring.Size = new System.Drawing.Size(582, 20);
+            this.tb_settingsstring.ReadOnly = true;
+            this.tb_settingsstring.Size = new System.Drawing.Size(881, 20);
             this.tb_settingsstring.TabIndex = 69;
             // 
             // tb_bitmask
             // 
-            this.tb_bitmask.Location = new System.Drawing.Point(98, 51);
+            this.tb_bitmask.Location = new System.Drawing.Point(55, 47);
             this.tb_bitmask.Name = "tb_bitmask";
-            this.tb_bitmask.Size = new System.Drawing.Size(108, 20);
+            this.tb_bitmask.Size = new System.Drawing.Size(68, 20);
             this.tb_bitmask.TabIndex = 70;
             this.tb_bitmask.Text = "0x00";
+            this.toolTip1.SetToolTip(this.tb_bitmask, "Enter a bitmask if not full bytes (bitwise) need to be evaluated");
+            this.tb_bitmask.TextChanged += new System.EventHandler(this.tb_bitmask_TextChanged);
             // 
             // imageList1
             // 
@@ -766,7 +821,7 @@ namespace UDS_Decoder
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(53, 54);
+            this.label11.Location = new System.Drawing.Point(8, 50);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(44, 13);
             this.label11.TabIndex = 71;
@@ -774,12 +829,16 @@ namespace UDS_Decoder
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label26);
+            this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.tb_byte23);
             this.groupBox1.Controls.Add(this.cb_byte23);
             this.groupBox1.Controls.Add(this.tb_byte22);
             this.groupBox1.Controls.Add(this.cb_byte22);
             this.groupBox1.Controls.Add(this.tb_byte21);
+            this.groupBox1.Controls.Add(this.lab_length);
+            this.groupBox1.Controls.Add(this.lab_startbit);
             this.groupBox1.Controls.Add(this.cb_byte21);
             this.groupBox1.Controls.Add(this.tb_byte20);
             this.groupBox1.Controls.Add(this.cb_byte20);
@@ -797,13 +856,8 @@ namespace UDS_Decoder
             this.groupBox1.Controls.Add(this.cb_isFloat);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.tb_bitmask);
-            this.groupBox1.Controls.Add(this.tb_factor2);
             this.groupBox1.Controls.Add(this.tb_byte15);
             this.groupBox1.Controls.Add(this.cb_byte15);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.tb_factor);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.tb_act_value);
             this.groupBox1.Controls.Add(this.tb_byte14);
             this.groupBox1.Controls.Add(this.cb_byte14);
             this.groupBox1.Controls.Add(this.tb_byte13);
@@ -845,17 +899,196 @@ namespace UDS_Decoder
             this.groupBox1.Controls.Add(this.tb_byte0);
             this.groupBox1.Controls.Add(this.cb_byte0);
             this.groupBox1.Controls.Add(this.tb_mult);
-            this.groupBox1.Location = new System.Drawing.Point(12, 53);
+            this.groupBox1.Location = new System.Drawing.Point(12, 167);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1227, 226);
+            this.groupBox1.Size = new System.Drawing.Size(1240, 241);
             this.groupBox1.TabIndex = 72;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "VCDS Decoder";
             // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(150, 52);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(76, 13);
+            this.label26.TabIndex = 94;
+            this.label26.Text = "Byte selection:";
+            this.toolTip1.SetToolTip(this.label26, "Select the bytes you want to evaluate");
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.tb_factor2);
+            this.groupBox3.Controls.Add(this.tb_act_value);
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Controls.Add(this.tb_factor);
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Location = new System.Drawing.Point(268, 142);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(259, 81);
+            this.groupBox3.TabIndex = 93;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Calc helper";
+            this.toolTip1.SetToolTip(this.groupBox3, "Insert actual value from VCDS and see the factor it differs from your current cal" +
+        "culation");
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(216, 28);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(9, 13);
+            this.label15.TabIndex = 92;
+            this.label15.Text = "|";
+            // 
+            // tb_byte23
+            // 
+            this.tb_byte23.Location = new System.Drawing.Point(1196, 25);
+            this.tb_byte23.Name = "tb_byte23";
+            this.tb_byte23.Size = new System.Drawing.Size(36, 20);
+            this.tb_byte23.TabIndex = 91;
+            // 
+            // cb_byte23
+            // 
+            this.cb_byte23.AutoSize = true;
+            this.cb_byte23.Location = new System.Drawing.Point(1196, 51);
+            this.cb_byte23.Name = "cb_byte23";
+            this.cb_byte23.Size = new System.Drawing.Size(38, 17);
+            this.cb_byte23.TabIndex = 90;
+            this.cb_byte23.Text = "23";
+            this.cb_byte23.UseVisualStyleBackColor = true;
+            this.cb_byte23.CheckedChanged += new System.EventHandler(this.cb_byte23_CheckedChanged);
+            // 
+            // tb_byte22
+            // 
+            this.tb_byte22.Location = new System.Drawing.Point(1154, 25);
+            this.tb_byte22.Name = "tb_byte22";
+            this.tb_byte22.Size = new System.Drawing.Size(36, 20);
+            this.tb_byte22.TabIndex = 89;
+            // 
+            // cb_byte22
+            // 
+            this.cb_byte22.AutoSize = true;
+            this.cb_byte22.Location = new System.Drawing.Point(1154, 51);
+            this.cb_byte22.Name = "cb_byte22";
+            this.cb_byte22.Size = new System.Drawing.Size(38, 17);
+            this.cb_byte22.TabIndex = 88;
+            this.cb_byte22.Text = "22";
+            this.cb_byte22.UseVisualStyleBackColor = true;
+            this.cb_byte22.CheckedChanged += new System.EventHandler(this.cb_byte22_CheckedChanged);
+            // 
+            // tb_byte21
+            // 
+            this.tb_byte21.Location = new System.Drawing.Point(1112, 25);
+            this.tb_byte21.Name = "tb_byte21";
+            this.tb_byte21.Size = new System.Drawing.Size(36, 20);
+            this.tb_byte21.TabIndex = 87;
+            // 
+            // cb_byte21
+            // 
+            this.cb_byte21.AutoSize = true;
+            this.cb_byte21.Location = new System.Drawing.Point(1112, 51);
+            this.cb_byte21.Name = "cb_byte21";
+            this.cb_byte21.Size = new System.Drawing.Size(38, 17);
+            this.cb_byte21.TabIndex = 86;
+            this.cb_byte21.Text = "21";
+            this.cb_byte21.UseVisualStyleBackColor = true;
+            this.cb_byte21.CheckedChanged += new System.EventHandler(this.cb_byte21_CheckedChanged);
+            // 
+            // tb_byte20
+            // 
+            this.tb_byte20.Location = new System.Drawing.Point(1070, 25);
+            this.tb_byte20.Name = "tb_byte20";
+            this.tb_byte20.Size = new System.Drawing.Size(36, 20);
+            this.tb_byte20.TabIndex = 85;
+            // 
+            // cb_byte20
+            // 
+            this.cb_byte20.AutoSize = true;
+            this.cb_byte20.Location = new System.Drawing.Point(1070, 51);
+            this.cb_byte20.Name = "cb_byte20";
+            this.cb_byte20.Size = new System.Drawing.Size(38, 17);
+            this.cb_byte20.TabIndex = 84;
+            this.cb_byte20.Text = "20";
+            this.cb_byte20.UseVisualStyleBackColor = true;
+            this.cb_byte20.CheckedChanged += new System.EventHandler(this.cb_byte20_CheckedChanged);
+            // 
+            // tb_byte19
+            // 
+            this.tb_byte19.Location = new System.Drawing.Point(1028, 25);
+            this.tb_byte19.Name = "tb_byte19";
+            this.tb_byte19.Size = new System.Drawing.Size(36, 20);
+            this.tb_byte19.TabIndex = 83;
+            // 
+            // cb_byte19
+            // 
+            this.cb_byte19.AutoSize = true;
+            this.cb_byte19.Location = new System.Drawing.Point(1028, 51);
+            this.cb_byte19.Name = "cb_byte19";
+            this.cb_byte19.Size = new System.Drawing.Size(38, 17);
+            this.cb_byte19.TabIndex = 82;
+            this.cb_byte19.Text = "19";
+            this.cb_byte19.UseVisualStyleBackColor = true;
+            this.cb_byte19.CheckedChanged += new System.EventHandler(this.cb_byte19_CheckedChanged);
+            // 
+            // tb_byte18
+            // 
+            this.tb_byte18.Location = new System.Drawing.Point(986, 25);
+            this.tb_byte18.Name = "tb_byte18";
+            this.tb_byte18.Size = new System.Drawing.Size(36, 20);
+            this.tb_byte18.TabIndex = 81;
+            // 
+            // cb_byte18
+            // 
+            this.cb_byte18.AutoSize = true;
+            this.cb_byte18.Location = new System.Drawing.Point(986, 51);
+            this.cb_byte18.Name = "cb_byte18";
+            this.cb_byte18.Size = new System.Drawing.Size(38, 17);
+            this.cb_byte18.TabIndex = 80;
+            this.cb_byte18.Text = "18";
+            this.cb_byte18.UseVisualStyleBackColor = true;
+            this.cb_byte18.CheckedChanged += new System.EventHandler(this.cb_byte18_CheckedChanged);
+            // 
+            // tb_byte17
+            // 
+            this.tb_byte17.Location = new System.Drawing.Point(944, 25);
+            this.tb_byte17.Name = "tb_byte17";
+            this.tb_byte17.Size = new System.Drawing.Size(36, 20);
+            this.tb_byte17.TabIndex = 79;
+            // 
+            // cb_byte17
+            // 
+            this.cb_byte17.AutoSize = true;
+            this.cb_byte17.Location = new System.Drawing.Point(944, 51);
+            this.cb_byte17.Name = "cb_byte17";
+            this.cb_byte17.Size = new System.Drawing.Size(38, 17);
+            this.cb_byte17.TabIndex = 78;
+            this.cb_byte17.Text = "17";
+            this.cb_byte17.UseVisualStyleBackColor = true;
+            this.cb_byte17.CheckedChanged += new System.EventHandler(this.cb_byte17_CheckedChanged);
+            // 
+            // tb_byte16
+            // 
+            this.tb_byte16.Location = new System.Drawing.Point(902, 25);
+            this.tb_byte16.Name = "tb_byte16";
+            this.tb_byte16.Size = new System.Drawing.Size(36, 20);
+            this.tb_byte16.TabIndex = 77;
+            // 
+            // cb_byte16
+            // 
+            this.cb_byte16.AutoSize = true;
+            this.cb_byte16.Location = new System.Drawing.Point(902, 51);
+            this.cb_byte16.Name = "cb_byte16";
+            this.cb_byte16.Size = new System.Drawing.Size(38, 17);
+            this.cb_byte16.TabIndex = 76;
+            this.cb_byte16.Text = "16";
+            this.cb_byte16.UseVisualStyleBackColor = true;
+            this.cb_byte16.CheckedChanged += new System.EventHandler(this.cb_byte16_CheckedChanged);
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(66, 28);
+            this.label14.Location = new System.Drawing.Point(67, 28);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(18, 13);
             this.label14.TabIndex = 75;
@@ -867,6 +1100,7 @@ namespace UDS_Decoder
             this.tb_req_id.Name = "tb_req_id";
             this.tb_req_id.Size = new System.Drawing.Size(60, 20);
             this.tb_req_id.TabIndex = 74;
+            this.toolTip1.SetToolTip(this.tb_req_id, "Request CAN ID");
             // 
             // gb_interpolate
             // 
@@ -885,7 +1119,7 @@ namespace UDS_Decoder
             this.gb_interpolate.Controls.Add(this.tb_ay);
             this.gb_interpolate.Controls.Add(this.label6);
             this.gb_interpolate.Controls.Add(this.tb_ax);
-            this.gb_interpolate.Location = new System.Drawing.Point(422, 80);
+            this.gb_interpolate.Location = new System.Drawing.Point(622, 77);
             this.gb_interpolate.Name = "gb_interpolate";
             this.gb_interpolate.Size = new System.Drawing.Size(238, 146);
             this.gb_interpolate.TabIndex = 73;
@@ -900,6 +1134,7 @@ namespace UDS_Decoder
             this.cb_isFloat.Size = new System.Drawing.Size(49, 17);
             this.cb_isFloat.TabIndex = 72;
             this.cb_isFloat.Text = "Float";
+            this.toolTip1.SetToolTip(this.cb_isFloat, "IEEE 754 32 bit float");
             this.cb_isFloat.UseVisualStyleBackColor = true;
             // 
             // gb_torque
@@ -910,7 +1145,7 @@ namespace UDS_Decoder
             this.gb_torque.Controls.Add(this.label12);
             this.gb_torque.Controls.Add(this.tb_abc_in);
             this.gb_torque.Controls.Add(this.textBox1);
-            this.gb_torque.Location = new System.Drawing.Point(12, 285);
+            this.gb_torque.Location = new System.Drawing.Point(12, 426);
             this.gb_torque.Name = "gb_torque";
             this.gb_torque.Size = new System.Drawing.Size(975, 77);
             this.gb_torque.TabIndex = 73;
@@ -968,189 +1203,343 @@ namespace UDS_Decoder
             // 
             this.lab_value_big.AutoSize = true;
             this.lab_value_big.Font = new System.Drawing.Font("Microsoft Sans Serif", 200F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_value_big.Location = new System.Drawing.Point(58, 430);
+            this.lab_value_big.Location = new System.Drawing.Point(30, 411);
             this.lab_value_big.Name = "lab_value_big";
             this.lab_value_big.Size = new System.Drawing.Size(497, 302);
             this.lab_value_big.TabIndex = 73;
             this.lab_value_big.Text = "0.0";
             // 
-            // tb_byte16
+            // sql_insert_tb
             // 
-            this.tb_byte16.Location = new System.Drawing.Point(886, 25);
-            this.tb_byte16.Name = "tb_byte16";
-            this.tb_byte16.Size = new System.Drawing.Size(36, 20);
-            this.tb_byte16.TabIndex = 77;
+            this.sql_insert_tb.Location = new System.Drawing.Point(80, 93);
+            this.sql_insert_tb.Name = "sql_insert_tb";
+            this.sql_insert_tb.ReadOnly = true;
+            this.sql_insert_tb.Size = new System.Drawing.Size(881, 20);
+            this.sql_insert_tb.TabIndex = 74;
             // 
-            // cb_byte16
+            // gb_Connection
             // 
-            this.cb_byte16.AutoSize = true;
-            this.cb_byte16.Location = new System.Drawing.Point(886, 51);
-            this.cb_byte16.Name = "cb_byte16";
-            this.cb_byte16.Size = new System.Drawing.Size(38, 17);
-            this.cb_byte16.TabIndex = 76;
-            this.cb_byte16.Text = "16";
-            this.cb_byte16.UseVisualStyleBackColor = true;
-            this.cb_byte16.CheckedChanged += new System.EventHandler(this.cb_byte16_CheckedChanged);
+            this.gb_Connection.Controls.Add(this.lab_counter);
+            this.gb_Connection.Controls.Add(this.selector_com_port);
+            this.gb_Connection.Controls.Add(this.btn_connect);
+            this.gb_Connection.Controls.Add(this.btn_com_port_refresh);
+            this.gb_Connection.Controls.Add(this.lab_msg_counter);
+            this.gb_Connection.Location = new System.Drawing.Point(10, 7);
+            this.gb_Connection.Name = "gb_Connection";
+            this.gb_Connection.Size = new System.Drawing.Size(185, 71);
+            this.gb_Connection.TabIndex = 75;
+            this.gb_Connection.TabStop = false;
+            this.gb_Connection.Text = "Connection";
+            this.toolTip1.SetToolTip(this.gb_Connection, "UART Connection to Teensy based CAN sniffer");
             // 
-            // tb_byte17
+            // lab_counter
             // 
-            this.tb_byte17.Location = new System.Drawing.Point(928, 25);
-            this.tb_byte17.Name = "tb_byte17";
-            this.tb_byte17.Size = new System.Drawing.Size(36, 20);
-            this.tb_byte17.TabIndex = 79;
+            this.lab_counter.AutoSize = true;
+            this.lab_counter.Location = new System.Drawing.Point(5, 49);
+            this.lab_counter.Name = "lab_counter";
+            this.lab_counter.Size = new System.Drawing.Size(92, 13);
+            this.lab_counter.TabIndex = 25;
+            this.lab_counter.Text = "Message counter:";
             // 
-            // cb_byte17
+            // groupBox2
             // 
-            this.cb_byte17.AutoSize = true;
-            this.cb_byte17.Location = new System.Drawing.Point(928, 51);
-            this.cb_byte17.Name = "cb_byte17";
-            this.cb_byte17.Size = new System.Drawing.Size(38, 17);
-            this.cb_byte17.TabIndex = 78;
-            this.cb_byte17.Text = "17";
-            this.cb_byte17.UseVisualStyleBackColor = true;
-            this.cb_byte17.CheckedChanged += new System.EventHandler(this.cb_byte17_CheckedChanged);
+            this.groupBox2.Controls.Add(this.button3);
+            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.tb_comment);
+            this.groupBox2.Controls.Add(this.label25);
+            this.groupBox2.Controls.Add(this.label24);
+            this.groupBox2.Controls.Add(this.label23);
+            this.groupBox2.Controls.Add(this.label22);
+            this.groupBox2.Controls.Add(this.tb_offlineParser);
+            this.groupBox2.Controls.Add(this.label21);
+            this.groupBox2.Controls.Add(this.tb_group_man);
+            this.groupBox2.Controls.Add(this.sql_insert_tb);
+            this.groupBox2.Controls.Add(this.cb_group);
+            this.groupBox2.Controls.Add(this.tb_freq);
+            this.groupBox2.Controls.Add(this.tb_reqid);
+            this.groupBox2.Controls.Add(this.label20);
+            this.groupBox2.Controls.Add(this.tb_settingsstring);
+            this.groupBox2.Controls.Add(this.tb_unit);
+            this.groupBox2.Controls.Add(this.tb_nameVar);
+            this.groupBox2.Controls.Add(this.tb_nameEN);
+            this.groupBox2.Controls.Add(this.tb_nameDE);
+            this.groupBox2.Controls.Add(this.label19);
+            this.groupBox2.Controls.Add(this.label18);
+            this.groupBox2.Controls.Add(this.label17);
+            this.groupBox2.Controls.Add(this.label16);
+            this.groupBox2.Location = new System.Drawing.Point(211, 13);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(1041, 157);
+            this.groupBox2.TabIndex = 76;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Parameter";
             // 
-            // tb_byte18
+            // button3
             // 
-            this.tb_byte18.Location = new System.Drawing.Point(970, 25);
-            this.tb_byte18.Name = "tb_byte18";
-            this.tb_byte18.Size = new System.Drawing.Size(36, 20);
-            this.tb_byte18.TabIndex = 81;
+            this.button3.Location = new System.Drawing.Point(967, 121);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(50, 23);
+            this.button3.TabIndex = 88;
+            this.button3.Text = "Copy";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // cb_byte18
+            // button2
             // 
-            this.cb_byte18.AutoSize = true;
-            this.cb_byte18.Location = new System.Drawing.Point(970, 51);
-            this.cb_byte18.Name = "cb_byte18";
-            this.cb_byte18.Size = new System.Drawing.Size(38, 17);
-            this.cb_byte18.TabIndex = 80;
-            this.cb_byte18.Text = "18";
-            this.cb_byte18.UseVisualStyleBackColor = true;
-            this.cb_byte18.CheckedChanged += new System.EventHandler(this.cb_byte18_CheckedChanged);
+            this.button2.Location = new System.Drawing.Point(967, 92);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(50, 23);
+            this.button2.TabIndex = 87;
+            this.button2.Text = "Copy";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // tb_byte19
+            // button1
             // 
-            this.tb_byte19.Location = new System.Drawing.Point(1012, 25);
-            this.tb_byte19.Name = "tb_byte19";
-            this.tb_byte19.Size = new System.Drawing.Size(36, 20);
-            this.tb_byte19.TabIndex = 83;
+            this.button1.Location = new System.Drawing.Point(967, 65);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(50, 23);
+            this.button1.TabIndex = 86;
+            this.button1.Text = "Copy";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // cb_byte19
+            // tb_comment
             // 
-            this.cb_byte19.AutoSize = true;
-            this.cb_byte19.Location = new System.Drawing.Point(1012, 51);
-            this.cb_byte19.Name = "cb_byte19";
-            this.cb_byte19.Size = new System.Drawing.Size(38, 17);
-            this.cb_byte19.TabIndex = 82;
-            this.cb_byte19.Text = "19";
-            this.cb_byte19.UseVisualStyleBackColor = true;
-            this.cb_byte19.CheckedChanged += new System.EventHandler(this.cb_byte19_CheckedChanged);
+            this.tb_comment.Location = new System.Drawing.Point(727, 41);
+            this.tb_comment.Name = "tb_comment";
+            this.tb_comment.Size = new System.Drawing.Size(290, 20);
+            this.tb_comment.TabIndex = 85;
             // 
-            // tb_byte20
+            // label25
             // 
-            this.tb_byte20.Location = new System.Drawing.Point(1054, 25);
-            this.tb_byte20.Name = "tb_byte20";
-            this.tb_byte20.Size = new System.Drawing.Size(36, 20);
-            this.tb_byte20.TabIndex = 85;
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(675, 44);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(51, 13);
+            this.label25.TabIndex = 84;
+            this.label25.Text = "Comment";
             // 
-            // cb_byte20
+            // label24
             // 
-            this.cb_byte20.AutoSize = true;
-            this.cb_byte20.Location = new System.Drawing.Point(1054, 51);
-            this.cb_byte20.Name = "cb_byte20";
-            this.cb_byte20.Size = new System.Drawing.Size(38, 17);
-            this.cb_byte20.TabIndex = 84;
-            this.cb_byte20.Text = "20";
-            this.cb_byte20.UseVisualStyleBackColor = true;
-            this.cb_byte20.CheckedChanged += new System.EventHandler(this.cb_byte20_CheckedChanged);
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(6, 125);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(70, 13);
+            this.label24.TabIndex = 83;
+            this.label24.Text = "Offline Parser";
+            this.toolTip1.SetToolTip(this.label24, "Line forthe python offline parser config file (when not using DB based tools)");
             // 
-            // tb_byte21
+            // label23
             // 
-            this.tb_byte21.Location = new System.Drawing.Point(1096, 25);
-            this.tb_byte21.Name = "tb_byte21";
-            this.tb_byte21.Size = new System.Drawing.Size(36, 20);
-            this.tb_byte21.TabIndex = 87;
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(6, 96);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(56, 13);
+            this.label23.TabIndex = 82;
+            this.label23.Text = "SQL insert";
+            this.toolTip1.SetToolTip(this.label23, "SQL insert template for adding new requests to SQL DB");
             // 
-            // cb_byte21
+            // label22
             // 
-            this.cb_byte21.AutoSize = true;
-            this.cb_byte21.Location = new System.Drawing.Point(1096, 51);
-            this.cb_byte21.Name = "cb_byte21";
-            this.cb_byte21.Size = new System.Drawing.Size(38, 17);
-            this.cb_byte21.TabIndex = 86;
-            this.cb_byte21.Text = "21";
-            this.cb_byte21.UseVisualStyleBackColor = true;
-            this.cb_byte21.CheckedChanged += new System.EventHandler(this.cb_byte21_CheckedChanged);
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(8, 69);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(60, 13);
+            this.label22.TabIndex = 81;
+            this.label22.Text = "Config Line";
+            this.toolTip1.SetToolTip(this.label22, "Config line for ESP32 OBD data logger");
             // 
-            // tb_byte22
+            // tb_offlineParser
             // 
-            this.tb_byte22.Location = new System.Drawing.Point(1138, 25);
-            this.tb_byte22.Name = "tb_byte22";
-            this.tb_byte22.Size = new System.Drawing.Size(36, 20);
-            this.tb_byte22.TabIndex = 89;
+            this.tb_offlineParser.Location = new System.Drawing.Point(80, 122);
+            this.tb_offlineParser.Name = "tb_offlineParser";
+            this.tb_offlineParser.ReadOnly = true;
+            this.tb_offlineParser.Size = new System.Drawing.Size(881, 20);
+            this.tb_offlineParser.TabIndex = 80;
             // 
-            // cb_byte22
+            // label21
             // 
-            this.cb_byte22.AutoSize = true;
-            this.cb_byte22.Location = new System.Drawing.Point(1138, 51);
-            this.cb_byte22.Name = "cb_byte22";
-            this.cb_byte22.Size = new System.Drawing.Size(38, 17);
-            this.cb_byte22.TabIndex = 88;
-            this.cb_byte22.Text = "22";
-            this.cb_byte22.UseVisualStyleBackColor = true;
-            this.cb_byte22.CheckedChanged += new System.EventHandler(this.cb_byte22_CheckedChanged);
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(300, 19);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(20, 13);
+            this.label21.TabIndex = 79;
+            this.label21.Text = "ms";
             // 
-            // tb_byte23
+            // tb_group_man
             // 
-            this.tb_byte23.Location = new System.Drawing.Point(1180, 25);
-            this.tb_byte23.Name = "tb_byte23";
-            this.tb_byte23.Size = new System.Drawing.Size(36, 20);
-            this.tb_byte23.TabIndex = 91;
+            this.tb_group_man.Location = new System.Drawing.Point(518, 16);
+            this.tb_group_man.Name = "tb_group_man";
+            this.tb_group_man.ReadOnly = true;
+            this.tb_group_man.Size = new System.Drawing.Size(52, 20);
+            this.tb_group_man.TabIndex = 78;
+            this.toolTip1.SetToolTip(this.tb_group_man, resources.GetString("tb_group_man.ToolTip"));
             // 
-            // cb_byte23
+            // cb_group
             // 
-            this.cb_byte23.AutoSize = true;
-            this.cb_byte23.Location = new System.Drawing.Point(1180, 51);
-            this.cb_byte23.Name = "cb_byte23";
-            this.cb_byte23.Size = new System.Drawing.Size(38, 17);
-            this.cb_byte23.TabIndex = 90;
-            this.cb_byte23.Text = "23";
-            this.cb_byte23.UseVisualStyleBackColor = true;
-            this.cb_byte23.CheckedChanged += new System.EventHandler(this.cb_byte23_CheckedChanged);
+            this.cb_group.FormattingEnabled = true;
+            this.cb_group.Items.AddRange(new object[] {
+            "driving",
+            "charging",
+            "driving+ charging",
+            "custom"});
+            this.cb_group.Location = new System.Drawing.Point(405, 15);
+            this.cb_group.Name = "cb_group";
+            this.cb_group.Size = new System.Drawing.Size(106, 21);
+            this.cb_group.TabIndex = 77;
+            this.cb_group.SelectedIndexChanged += new System.EventHandler(this.cb_group_SelectedIndexChanged);
             // 
-            // label15
+            // tb_freq
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(205, 28);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(9, 13);
-            this.label15.TabIndex = 92;
-            this.label15.Text = "|";
+            this.tb_freq.Location = new System.Drawing.Point(246, 16);
+            this.tb_freq.Name = "tb_freq";
+            this.tb_freq.Size = new System.Drawing.Size(53, 20);
+            this.tb_freq.TabIndex = 76;
+            this.tb_freq.Text = "1000";
+            // 
+            // tb_reqid
+            // 
+            this.tb_reqid.Location = new System.Drawing.Point(70, 17);
+            this.tb_reqid.Name = "tb_reqid";
+            this.tb_reqid.Size = new System.Drawing.Size(86, 20);
+            this.tb_reqid.TabIndex = 75;
+            this.toolTip1.SetToolTip(this.tb_reqid, "Eindeutige ID der Anfrage");
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(573, 44);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(26, 13);
+            this.label20.TabIndex = 74;
+            this.label20.Text = "Unit";
+            // 
+            // tb_unit
+            // 
+            this.tb_unit.Location = new System.Drawing.Point(599, 41);
+            this.tb_unit.Name = "tb_unit";
+            this.tb_unit.Size = new System.Drawing.Size(40, 20);
+            this.tb_unit.TabIndex = 73;
+            // 
+            // tb_nameVar
+            // 
+            this.tb_nameVar.Location = new System.Drawing.Point(415, 40);
+            this.tb_nameVar.Name = "tb_nameVar";
+            this.tb_nameVar.Size = new System.Drawing.Size(139, 20);
+            this.tb_nameVar.TabIndex = 72;
+            this.toolTip1.SetToolTip(this.tb_nameVar, "Variablen-Name");
+            // 
+            // tb_nameEN
+            // 
+            this.tb_nameEN.Location = new System.Drawing.Point(267, 40);
+            this.tb_nameEN.Name = "tb_nameEN";
+            this.tb_nameEN.Size = new System.Drawing.Size(139, 20);
+            this.tb_nameEN.TabIndex = 71;
+            // 
+            // tb_nameDE
+            // 
+            this.tb_nameDE.Location = new System.Drawing.Point(119, 40);
+            this.tb_nameDE.Name = "tb_nameDE";
+            this.tb_nameDE.Size = new System.Drawing.Size(139, 20);
+            this.tb_nameDE.TabIndex = 70;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(7, 42);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(106, 13);
+            this.label19.TabIndex = 3;
+            this.label19.Text = "Name (DE | EN | Var)";
+            this.toolTip1.SetToolTip(this.label19, "Name of the request value. \'Var\' is the variable representation name in data expo" +
+        "rts");
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(330, 18);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(77, 13);
+            this.label18.TabIndex = 2;
+            this.label18.Text = "Request group";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(190, 19);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(57, 13);
+            this.label17.TabIndex = 1;
+            this.label17.Text = "Frequency";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(6, 20);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(61, 13);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "Request ID";
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Location = new System.Drawing.Point(1209, 2);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(40, 13);
+            this.linkLabel2.TabIndex = 91;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "GitHub";
+            this.toolTip1.SetToolTip(this.linkLabel2, "uds_decoder repo on GitHub");
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(1083, 2);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(119, 13);
+            this.linkLabel1.TabIndex = 90;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "© FTM - Florian Schmid";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 10;
+            this.timer1.Tick += new System.EventHandler(this.update_highlight);
             // 
             // uds_decoder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1254, 286);
+            this.ClientSize = new System.Drawing.Size(1261, 418);
+            this.Controls.Add(this.linkLabel2);
+            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.gb_Connection);
             this.Controls.Add(this.lab_value_big);
             this.Controls.Add(this.gb_torque);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.tb_settingsstring);
-            this.Controls.Add(this.lab_length);
-            this.Controls.Add(this.lab_msg_counter);
-            this.Controls.Add(this.lab_startbit);
-            this.Controls.Add(this.btn_com_port_refresh);
-            this.Controls.Add(this.selector_com_port);
-            this.Controls.Add(this.btn_connect);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "uds_decoder";
             this.Text = "UDS Decoder";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.uds_decoder_FormClosed);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.gb_interpolate.ResumeLayout(false);
             this.gb_interpolate.PerformLayout();
             this.gb_torque.ResumeLayout(false);
             this.gb_torque.PerformLayout();
+            this.gb_Connection.ResumeLayout(false);
+            this.gb_Connection.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1261,6 +1650,39 @@ namespace UDS_Decoder
         private System.Windows.Forms.TextBox tb_byte16;
         private System.Windows.Forms.CheckBox cb_byte16;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox sql_insert_tb;
+        private System.Windows.Forms.GroupBox gb_Connection;
+        private System.Windows.Forms.Label lab_counter;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox tb_unit;
+        private System.Windows.Forms.TextBox tb_nameVar;
+        private System.Windows.Forms.TextBox tb_nameEN;
+        private System.Windows.Forms.TextBox tb_nameDE;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox tb_offlineParser;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox tb_group_man;
+        private System.Windows.Forms.ComboBox cb_group;
+        private System.Windows.Forms.TextBox tb_freq;
+        private System.Windows.Forms.TextBox tb_reqid;
+        private System.Windows.Forms.TextBox tb_comment;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.LinkLabel linkLabel2;
     }
 }
 
