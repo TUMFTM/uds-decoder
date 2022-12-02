@@ -53,52 +53,60 @@ namespace UDS_Decoder
         {
             // Debug.WriteLine("Total: " +str + " --- END");
             // remove request
-            Match m0 = Regex.Match(str, @"\d+\t(\S+) ...  (\S{2}) (22)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?..", RegexOptions.Singleline);
-            while (m0.Success)
+            var expr = @"\d+\t(\S+) ...  (\S{2}) (22)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?..";
+            MatchCollection m00 = Regex.Matches(str, expr, RegexOptions.Singleline);
+            // Debug.WriteLine(m00.Count);
+            if (m00.Count > 1)
             {
-                set_text_box_string(tb_req_id, m0.Groups[1].Value);
-                inclement_msg_counter();
-                str = str.Replace(m0.Groups[0].Value, "");
-                //Debug.WriteLine("M0: " + m0.Groups[0].Value);
-                m0 = m0.NextMatch();
+                Match m0 = Regex.Match(str, expr, RegexOptions.Singleline);
+                if (m0.Success)
+                {
+                    set_text_box_string(tb_req_id, m0.Groups[1].Value);
+                    inclement_msg_counter();
+                    str = str.Replace(m0.Groups[0].Value, "");
+                    //Debug.WriteLine("M0: " + m0.Groups[0].Value);
+                    m0 = m0.NextMatch();
+                }
+
+                // single line response
+                Match m = Regex.Match(str, @"\d+\t(\S+) ...  (0\d)(?> (62))(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?", RegexOptions.None);
+                if (m.Success)
+                {
+                    fill_data(m.Groups);
+                    inclement_msg_counter();
+                    str = str.Replace(m.Groups[0].Value, "");
+                    //Debug.WriteLine("M1: " + m.Groups[0].Value);
+                    // m = m.NextMatch();
+                }
+
+                // multi line response
+                Match m1 = Regex.Match(str, @"\d+\t(\S+) ...  (1\d)(?> (\S{2}))(?> 62)?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?..\d+\t(?>\S+) ...  30 00 01 .. .. .. .. .. .(?>\d+\t(?>\S+) ...  (?>21)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)+.(?>\d+\t(?>\S+) ...  (?>22)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)?.(?>\d+\t(?>\S+) ...  (?>23)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)?.(?>\d+\t(?>\S+) ...  (?>24)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)?.(?>\d+\t(?>\S+) ...  (?>25)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)?", RegexOptions.Singleline);
+                if (m1.Success)
+                {
+                    //Debug.WriteLine("M1: " + m1.Groups[0].Value);
+                    fill_data(m1.Groups);
+                    inclement_msg_counter();
+
+                    //for (int i = 0; i < 20; i++) {
+                    //        Debug.WriteLine(i.ToString()+": " + m1.Groups[i].ToString()); }
+                    //Debug.WriteLine("Match: --"+ m1.Value + "--");
+                    str = str.Replace(m1.Groups[0].Value, "");
+                    //Debug.WriteLine(str);
+
+                    // m1 = m1.NextMatch();
+                }
+
+                // remove old stuff if more than 15 lines in buffer
+
+                Match r = Regex.Match(str, @"((.*?)\n){30}");
+                if (r.Success)
+                {
+                    //Debug.WriteLine("Deleting: " + r.Groups[0].Value);
+                    str = str.Replace(r.Groups[0].Value, "");
+                }
             }
+            return str;
 
-            // single line response
-            Match m = Regex.Match(str, @"\d+\t(\S+) ...  (\S{2})(?> (62))(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?", RegexOptions.None);
-            while (m.Success)
-            {
-                fill_data(m.Groups);
-                inclement_msg_counter();
-                str = str.Replace(m.Groups[0].Value, "");
-                //Debug.WriteLine("M1: " + m.Groups[0].Value);
-                m = m.NextMatch();
-            }
-
-            // multi line response
-            Match m1 = Regex.Match(str, @"\d+\t(\S+) ...  (1\d)(?> (\S{2}))(?> 62)?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?..\d+\t(?>\S+) ...  30 00 01 .. .. .. .. .. .(?>\d+\t(?>\S+) ...  (?>2\d)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)?.(?>\d+\t(?>\S+) ...  (?>2\d)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)?.(?>\d+\t(?>\S+) ...  (?>2\d)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)?.(?>\d+\t(?>\S+) ...  (?>2\d)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)?.(?>\d+\t(?>\S+) ...  (?>2\d)(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))?(?> (\S{2}))? .)?", RegexOptions.Singleline);
-            while (m1.Success)
-            {
-                fill_data(m1.Groups);
-                inclement_msg_counter();
-
-                //for (int i = 0; i < 20; i++) {
-                //        Debug.WriteLine(i.ToString()+": " + m1.Groups[i].ToString()); }
-                //Debug.WriteLine("Match: --"+ m1.Value + "--");
-                str = str.Replace(m1.Groups[0].Value, "");
-                //Debug.WriteLine(str);
-
-                m1 = m1.NextMatch();
-            }
-
-            // remove old stuff if more than 15 lines in buffer
-
-            Match r = Regex.Match(str, @"((.*?)\n){30}");
-            if (r.Success)
-            {
-                //Debug.WriteLine("Deleting: " + r.Groups[0].Value);
-                 str = str.Replace(r.Groups[0].Value, "");
-            }
-                return str;
         }
 
         private void inclement_msg_counter()
@@ -127,34 +135,47 @@ namespace UDS_Decoder
 
         private void fill_data(GroupCollection g)
         {
-            const int b_count = 24;
-            TextBox [] tb = new TextBox[b_count] { tb_byte0, tb_byte1, tb_byte2, tb_byte3, tb_byte4, tb_byte5, tb_byte6, tb_byte7, tb_byte8, tb_byte9, tb_byte10, tb_byte11, tb_byte12, tb_byte13, tb_byte14, tb_byte15, tb_byte16, tb_byte17, tb_byte18, tb_byte19, tb_byte20, tb_byte21, tb_byte22, tb_byte23 };
-            
-            set_text_box_string(tb_id, g[1].Value);
-            set_text_box_string(tb_br0, g[4].Value);
-            set_text_box_string(tb_br1, g[5].Value);
-            int pos = 5; //5
-            int fcount = 0;
-            
-            //Debug.WriteLine("Count: " + g.Count);
+            //for( int p = 0; p<  g.Count; p++)
+            //{
+            //   Debug.WriteLine("Value [" + p + "] " +  g[p]);
+            //}
 
-            int t = check_fillvalue(g, pos);
-            while (t > 0)
+                const int b_count = 24;
+            int p_count = 0;
+            if (g[3].ToString()[0] == '1') {
+                p_count = int.Parse(g[3].ToString(), NumberStyles.HexNumber) - 3; // remove 0x62 and 2 bytes register
+            } else
             {
-                pos += t;
-                // Debug.WriteLine("Pos: " +pos + " Fcount:"+ fcount);
-                set_text_box_string_highlight(tb[fcount], g[pos].Value);
-                fcount++;
-                t = check_fillvalue(g, pos);
+                p_count = int.Parse((g[2].ToString()[1]).ToString(), NumberStyles.HexNumber) - 3;
             }
-            
+                                                                                      // Debug.WriteLine("Length: " + p_count);
+                TextBox[] tb = new TextBox[b_count] { tb_byte0, tb_byte1, tb_byte2, tb_byte3, tb_byte4, tb_byte5, tb_byte6, tb_byte7, tb_byte8, tb_byte9, tb_byte10, tb_byte11, tb_byte12, tb_byte13, tb_byte14, tb_byte15, tb_byte16, tb_byte17, tb_byte18, tb_byte19, tb_byte20, tb_byte21, tb_byte22, tb_byte23 };
 
-            
-            for ( int i = fcount; i< b_count; i++)
-            {
-                set_text_box_string(tb[i], "");
-            }
-            calc_value();
+                set_text_box_string(tb_id, g[1].Value);
+                set_text_box_string(tb_br0, g[4].Value);
+                set_text_box_string(tb_br1, g[5].Value);
+                int pos = 5; //5
+                int fcount = 0;
+
+                
+
+                int t = check_fillvalue(g, pos);
+                while (t > 0 && fcount < p_count && pos + t <= b_count)
+                {
+                    pos += t;
+                    // Debug.WriteLine("Pos: " +pos + " Fcount:"+ fcount);
+                    set_text_box_string_highlight(tb[fcount], g[pos].Value);
+                    fcount++;
+                    t = check_fillvalue(g, pos);
+                }
+
+
+
+                for (int i = fcount; i < b_count; i++)
+                {
+                    set_text_box_string(tb[i], "");
+                }
+                calc_value();
         }
 
         private int check_fillvalue(GroupCollection g, int pos)
@@ -163,7 +184,7 @@ namespace UDS_Decoder
             {
                 
                 if (g[i].Value != "") {
-                    // Debug.WriteLine("VAL: " + g[i].Value);
+                    //Debug.WriteLine("VAL: " + g[i].Value);
                     return  i-pos;
                 }
             }
