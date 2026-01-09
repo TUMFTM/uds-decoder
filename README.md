@@ -54,4 +54,4 @@ This is mainly used to source battery and powertrain data of VAG MEB vehicles (I
 
 
 Liked some of my stuff? Buy me a coffee (or more likely a beer)    
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/thezenox)
+<a href='https://ko-fi.com/P5P41RYRWK' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi5.png?v=6' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
